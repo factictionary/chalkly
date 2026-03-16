@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chalkly - Terms of Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .last-updated {
+            background: #f8f9fa;
+            padding: 15px 40px;
+            border-bottom: 1px solid #e9ecef;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 25px;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section h2 {
+            color: #4CAF50;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section h2:before {
+            content: "📋";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .section h3 {
+            color: #495057;
+            font-size: 1.2em;
+            margin: 20px 0 10px;
+            font-weight: 500;
+        }
+        
+        .section h4 {
+            color: #4CAF50;
+            font-size: 1.1em;
+            margin: 15px 0 8px;
+        }
+        
+        .section p {
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+        
+        .section ul, .section ol {
+            margin: 15px 0 15px 30px;
+            color: #4a5568;
+        }
+        
+        .section li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .highlight-box strong {
+            color: #2e7d32;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .warning-icon {
+            font-size: 24px;
+        }
+        
+        .warning-content {
+            color: #856404;
+            flex: 1;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .data-table th {
+            background: #4CAF50;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .contact-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .note-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        .footer a {
+            color: #90caf9;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .badge {
+            background: #4CAF50;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+        
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .terms-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .terms-card h4 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 Chalkly Terms of Service</h1>
+            <p>Please read these terms carefully before using our app</p>
+        </div>
+        
+        <div class="last-updated">
+            <strong>Last Updated:</strong> March 16, 2026<br>
+            <strong>Effective Date:</strong> March 16, 2026
+        </div>
+        
+        <div class="content">
+            <!-- Introduction -->
+            <div class="section">
+                <h2>1. Introduction</h2>
+                <p>Welcome to Chalkly ("we," "our," or "us"). By downloading, accessing, or using our mobile application and services, you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our app.</p>
+                
+                <div class="highlight-box">
+                    <strong>📌 Quick Summary</strong>
+                    <p>• You must be at least 13 years old to use Chalkly<br>
+                    • You are responsible for maintaining your account security<br>
+                    • We collect only essential data to provide our services<br>
+                    • You can delete your account and data at any time</p>
+                </div>
+            </div>
+            
+            <!-- Definitions -->
+            <div class="section">
+                <h2>2. Definitions</h2>
+                
+                <ul>
+                    <li><strong>"App"</strong> refers to the Chalkly mobile application and all associated services.</li>
+                    <li><strong>"User"</strong> refers to any individual who accesses or uses the App, including tutors, students, and parents.</li>
+                    <li><strong>"Tutor"</strong> refers to a user who creates an account to manage students, track attendance, and provide educational services.</li>
+                    <li><strong>"Student"</strong> refers to an individual whose data is managed within the App by a Tutor, typically accessing the App via access code.</li>
+                    <li><strong>"Access Code"</strong> refers to the unique 6-digit code generated for each student to view their own data.</li>
+                    <li><strong>"Content"</strong> refers to all information, data, text, images, and materials within the App.</li>
+                </ul>
+            </div>
+            
+            <!-- Eligibility -->
+            <div class="section">
+                <h2>3. Eligibility</h2>
+                
+                <p>By using Chalkly, you represent and warrant that:</p>
+                
+                <ul>
+                    <li><strong>Age:</strong> You are at least 13 years of age. If you are between 13 and 18, you represent that your legal guardian has reviewed and agreed to these Terms.</li>
+                    <li><strong>Authority:</strong> If you are using the App on behalf of an organization, you have the authority to bind that organization to these Terms.</li>
+                    <li><strong>Compliance:</strong> Your use of the App will comply with all applicable laws and regulations.</li>
+                    <li><strong>Account Information:</strong> All information you provide is accurate, current, and complete.</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <div class="warning-icon">⚠️</div>
+                    <div class="warning-content">
+                        <strong>Children Under 13:</strong> Chalkly is not intended for children under 13 without parental involvement. Student users under 13 must have a tutor or parent manage their account and provide consent.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Account Registration -->
+            <div class="section">
+                <h2>4. Account Registration</h2>
+                
+                <h3>4.1 Tutor Accounts</h3>
+                <p>Tutors must create an account using Google Sign-In. You are responsible for:</p>
+                <ul>
+                    <li>Maintaining the confidentiality of your account credentials</li>
+                    <li>All activities that occur under your account</li>
+                    <li>Notifying us immediately of any unauthorized use</li>
+                    <li>Ensuring the accuracy of all information you provide</li>
+                </ul>
+                
+                <h3>4.2 Student Access</h3>
+                <p>Students do not create accounts. Instead, they access the App using unique 6-digit access codes provided by their tutors. Students:</p>
+                <ul>
+                    <li>Can only view their own data (attendance, test results, feedback)</li>
+                    <li>Cannot modify or delete any data</li>
+                    <li>Have no account credentials to maintain</li>
+                    <li>Access expires if the tutor deletes or modifies their access</li>
+                </ul>
+                
+                <h3>4.3 Account Security</h3>
+                <p>You are responsible for all activity occurring under your account. We are not liable for any loss or damage arising from your failure to maintain account security.</p>
+            </div>
+            
+            <!-- Subscription and Payments -->
+            <div class="section">
+                <h2>5. Subscription and Payments</h2>
+                
+                <h3>5.1 Free vs. Premium Plans</h3>
+                <p>Chalkly offers both free and premium subscription plans:</p>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Plan</th>
+                            <th>Features</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Free Plan</strong></td>
+                            <td>Up to 5 students, basic attendance tracking, test recording, feedback management</td>
+                            <td>Free</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Premium Plan</strong></td>
+                            <td>Unlimited students, advanced analytics, report export, bulk operations, priority support</td>
+                            <td>As displayed in app</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>5.2 Payment Terms</h3>
+                <ul>
+                    <li><strong>Billing:</strong> All charges are processed through the Google Play Store.</li>
+                    <li><strong>Subscription Period:</strong> Premium subscriptions are billed monthly, yearly, or as a one-time lifetime purchase as selected.</li>
+                    <li><strong>Auto-Renewal:</strong> Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period.</li>
+                    <li><strong>Cancellation:</strong> You can cancel your subscription at any time through your Google Play Store settings.</li>
+                    <li><strong>Refunds:</strong> All purchases are final and non-refundable, except as required by applicable law.</li>
+                </ul>
+                
+                <div class="note-box">
+                    <p><strong>📌 Note:</strong> Free plan users will see occasional ads. Premium subscribers enjoy an ad-free experience.</p>
+                </div>
+            </div>
+            
+            <!-- User Data and Content -->
+            <div class="section">
+                <h2>6. User Data and Content</h2>
+                
+                <h3>6.1 Ownership</h3>
+                <p>You retain all ownership rights to the data and content you enter into Chalkly, including student information, attendance records, test results, and feedback.</p>
+                
+                <h3>6.2 License to Us</h3>
+                <p>By using Chalkly, you grant us a worldwide, royalty-free license to host, store, and process your data solely for the purpose of providing our services to you.</p>
+                
+                <h3>6.3 Data Accuracy</h3>
+                <p>You are responsible for the accuracy, quality, and legality of all data you enter into the App. We are not responsible for verifying the accuracy of any data.</p>
+                
+                <h3>6.4 Student Data</h3>
+                <p>As a tutor, you represent that you have obtained all necessary consents from parents or legal guardians before entering student data into Chalkly. You are responsible for complying with all applicable laws regarding student data privacy.</p>
+                
+                <div class="highlight-box">
+                    <strong>🔐 Data Protection</strong>
+                    <p>We take data protection seriously. All data is encrypted in transit and at rest. Student access codes ensure students can only view their own data. For more details, see our <a href="#" style="color: #4CAF50;">Privacy Policy</a>.</p>
+                </div>
+            </div>
+            
+            <!-- Acceptable Use -->
+            <div class="section">
+                <h2>7. Acceptable Use Policy</h2>
+                
+                <p>You agree not to use Chalkly to:</p>
+                
+                <div class="terms-grid">
+                    <div class="terms-card">
+                        <h4>🚫 Illegal Activities</h4>
+                        <p>Engage in any unlawful activity or promote illegal acts</p>
+                    </div>
+                    <div class="terms-card">
+                        <h4>🔞 Inappropriate Content</h4>
+                        <p>Upload obscene, offensive, or inappropriate content</p>
+                    </div>
+                    <div class="terms-card">
+                        <h4>🕵️ Privacy Violations</h4>
+                        <p>Share others' personal information without consent</p>
+                    </div>
+                    <div class="terms-card">
+                        <h4>🐞 Harmful Code</h4>
+                        <p>Transmit viruses, malware, or other harmful code</p>
+                    </div>
+                    <div class="terms-card">
+                        <h4>⚙️ System Abuse</h4>
+                        <p>Interfere with or disrupt the App's functionality</p>
+                    </div>
+                    <div class="terms-card">
+                        <h4>🔄 Unauthorized Access</h4>
+                        <p>Attempt to access other users' accounts or data</p>
+                    </div>
+                </div>
+                
+                <p>Violation of these rules may result in immediate termination of your account without refund.</p>
+            </div>
+            
+            <!-- Intellectual Property -->
+            <div class="section">
+                <h2>8. Intellectual Property Rights</h2>
+                
+                <h3>8.1 Our IP</h3>
+                <p>The Chalkly app, including its code, design, logo, and all related materials, is owned by us and protected by copyright, trademark, and other intellectual property laws. You may not copy, modify, distribute, sell, or lease any part of our App without our written permission.</p>
+                
+                <h3>8.2 User Feedback</h3>
+                <p>If you provide us with suggestions, ideas, or feedback about Chalkly, you grant us the right to use that feedback without compensation to you.</p>
+            </div>
+            
+            <!-- Third-Party Services -->
+            <div class="section">
+                <h2>9. Third-Party Services</h2>
+                
+                <p>Chalkly integrates with the following third-party services:</p>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Purpose</th>
+                            <th>Terms Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Google Sign-In</strong></td>
+                            <td>Authentication for tutor accounts</td>
+                            <td><a href="#" style="color: #4CAF50;">Google Terms</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Firebase (Google)</strong></td>
+                            <td>Cloud hosting, database, authentication</td>
+                            <td><a href="#" style="color: #4CAF50;">Firebase Terms</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Google Play</strong></td>
+                            <td>App distribution and payments</td>
+                            <td><a href="#" style="color: #4CAF50;">Google Play Terms</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p>We are not responsible for the practices of these third-party services. Your use of them is subject to their respective terms.</p>
+            </div>
+            
+            <!-- Termination -->
+            <div class="section">
+                <h2>10. Termination</h2>
+                
+                <h3>10.1 By You</h3>
+                <p>You may stop using Chalkly at any time. To delete your account and data, follow the instructions in our <a href="#" style="color: #4CAF50;">Privacy Policy</a> or use the in-app deletion feature.</p>
+                
+                <h3>10.2 By Us</h3>
+                <p>We may suspend or terminate your access to Chalkly if:</p>
+                <ul>
+                    <li>You violate these Terms</li>
+                    <li>Your use poses a security risk to us or others</li>
+                    <li>We are required to do so by law</li>
+                    <li>You fail to pay applicable fees</li>
+                </ul>
+                
+                <h3>10.3 Effect of Termination</h3>
+                <p>Upon termination, your right to use Chalkly immediately ceases. We may delete your data in accordance with our Privacy Policy, except where retention is required by law.</p>
+            </div>
+            
+            <!-- Disclaimer of Warranties -->
+            <div class="section">
+                <h2>11. Disclaimer of Warranties</h2>
+                
+                <p>CHALLLY IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, INCLUDING:</p>
+                
+                <ul>
+                    <li>Implied warranties of merchantability, fitness for a particular purpose, and non-infringement</li>
+                    <li>That the App will meet your requirements or be available at any particular time</li>
+                    <li>That the App will be error-free, secure, or free from viruses</li>
+                    <li>That any data you store will be accurate or reliable</li>
+                </ul>
+                
+                <p>No advice or information obtained from us or through the App creates any warranty not expressly stated in these Terms.</p>
+            </div>
+            
+            <!-- Limitation of Liability -->
+            <div class="section">
+                <h2>12. Limitation of Liability</h2>
+                
+                <div class="warning-box">
+                    <div class="warning-icon">⚖️</div>
+                    <div class="warning-content">
+                        <strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL WE BE LIABLE FOR:</strong>
+                    </div>
+                </div>
+                
+                <ul>
+                    <li>Any indirect, incidental, special, consequential, or punitive damages</li>
+                    <li>Loss of profits, revenue, data, or business opportunities</li>
+                    <li>Personal injury or property damage related to your use of the App</li>
+                    <li>Any unauthorized access to or use of our servers or data</li>
+                    <li>Any interruption or cessation of transmission to or from the App</li>
+                </ul>
+                
+                <p>Our total liability to you shall not exceed the amount you paid us (if any) during the 12 months preceding the claim.</p>
+            </div>
+            
+            <!-- Indemnification -->
+            <div class="section">
+                <h2>13. Indemnification</h2>
+                
+                <p>You agree to indemnify and hold harmless Chalkly, its officers, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys' fees) arising out of or related to:</p>
+                
+                <ul>
+                    <li>Your use of the App</li>
+                    <li>Your violation of these Terms</li>
+                    <li>Your violation of any third-party rights, including privacy rights</li>
+                    <li>Any content you submit or share through the App</li>
+                </ul>
+            </div>
+            
+            <!-- Changes to Terms -->
+            <div class="section">
+                <h2>14. Changes to These Terms</h2>
+                
+                <p>We may update these Terms from time to time. When we do, we will:</p>
+                
+                <ul>
+                    <li>Post the updated Terms on this page</li>
+                    <li>Update the "Last Updated" date at the top</li>
+                    <li>Notify you through the App for significant changes</li>
+                </ul>
+                
+                <p>Your continued use of Chalkly after changes constitutes your acceptance of the revised Terms.</p>
+            </div>
+            
+            <!-- Governing Law -->
+            <div class="section">
+                <h2>15. Governing Law</h2>
+                
+                <p>These Terms shall be governed by the laws of India, without regard to its conflict of laws provisions. Any disputes arising under these Terms shall be resolved in the courts of [Your City, State].</p>
+            </div>
+            
+            <!-- Dispute Resolution -->
+            <div class="section">
+                <h2>16. Dispute Resolution</h2>
+                
+                <h3>16.1 Informal Resolution</h3>
+                <p>Before filing any legal action, you agree to contact us at <strong>factictionary@gmail.com</strong> to attempt to resolve the dispute informally. We will work in good faith to resolve the issue.</p>
+                
+                <h3>16.2 Binding Arbitration</h3>
+                <p>If we cannot resolve the dispute informally, you agree that any dispute shall be resolved through binding arbitration in accordance with the Arbitration and Conciliation Act, 1996 of India.</p>
+            </div>
+            
+            <!-- Miscellaneous -->
+            <div class="section">
+                <h2>17. Miscellaneous</h2>
+                
+                <ul>
+                    <li><strong>Entire Agreement:</strong> These Terms constitute the entire agreement between you and Chalkly regarding your use of the App.</li>
+                    <li><strong>Severability:</strong> If any provision of these Terms is found to be unenforceable, the remaining provisions will remain in full force and effect.</li>
+                    <li><strong>Waiver:</strong> Our failure to enforce any right or provision does not waive that right.</li>
+                    <li><strong>Assignment:</strong> You may not assign or transfer these Terms without our written consent. We may assign these Terms without restriction.</li>
+                    <li><strong>No Third-Party Beneficiaries:</strong> These Terms do not create any third-party beneficiary rights.</li>
+                </ul>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="section">
+                <h2>18. Contact Us</h2>
+                
+                <p>If you have any questions about these Terms, please contact us at:</p>
+                
+                <div class="contact-info">
+                    <p><strong>Email:</strong> factictionary@gmail.com</p>
+                    <p><strong>Response Time:</strong> Within 48 hours</p>
+                </div>
+                
+                <p>For legal notices, you may also contact us at the same email address.</p>
+            </div>
+            
+            <!-- Acknowledgment -->
+            <div class="section">
+                <h2>19. Acknowledgment</h2>
+                
+                <p>BY USING CHALKLY, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS OF SERVICE AND AGREE TO BE BOUND BY THEM.</p>
+            </div>
+            
+            <!-- Compliance Badges -->
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap;">
+                <span style="background: #4285F4; color: white; padding: 8px 16px; border-radius: 20px;">✓ GDPR Compliant</span>
+                <span style="background: #34A853; color: white; padding: 8px 16px; border-radius: 20px;">✓ CCPA Ready</span>
+                <span style="background: #EA4335; color: white; padding: 8px 16px; border-radius: 20px;">✓ COPPA Compliant</span>
+                <span style="background: #FBBC05; color: white; padding: 8px 16px; border-radius: 20px;">✓ Data Encrypted</span>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2026 Chalkly. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Contact Us</a> | 
+                <a href="#">Data Deletion Request</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.7;">
+                These Terms of Service were last updated on March 16, 2026.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
