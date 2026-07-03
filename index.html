@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chalkly - Tutor's Assistant | Smart Teaching Management App</title>
+    <meta name="description" content="Chalkly is the ultimate companion app for tutors and educators. Manage students, track attendance, monitor test results, and share progress with parents through simple access codes.">
+    <meta name="keywords" content="tutor app, teaching assistant, student management, attendance tracking, education app, Chalkly, Factictionary, tutor software India">
+    <meta name="author" content="Factictionary">
+    <meta property="og:title" content="Chalkly - Tutor's Assistant">
+    <meta property="og:description" content="The ultimate companion app for tutors. Manage students, attendance, tests, and parent communication in one place.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chalkly.factictionary.in">
+    <link rel="canonical" href="https://chalkly.factictionary.in">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+</head>
+<body>
+
+<!-- ============== NAVIGATION ============== -->
+<nav class="navbar" id="navbar">
+    <div class="container nav-container">
+        <a href="#home" class="nav-brand">
+            <span class="brand-logo">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="10" fill="url(#brandGrad)"/>
+                    <path d="M11 27L20 11L29 27H11Z" fill="white" opacity="0.95"/>
+                    <circle cx="20" cy="22" r="2" fill="#FF6B6B"/>
+                    <defs>
+                        <linearGradient id="brandGrad" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#6366F1"/>
+                            <stop offset="100%" stop-color="#8B5CF6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </span>
+            <span class="brand-text">Chalkly</span>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How it Works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#faq">FAQ</a>
+            <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="nav-mobile-cta">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
+                Get the App
+            </a>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="btn btn-primary nav-cta">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
+            Get the App
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ============== HERO SECTION ============== -->
+<section class="hero" id="home">
+    <div class="hero-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+    <div class="container hero-container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span>Built for Indian Tutors & Educators</span>
+            </div>
+            <h1 class="hero-title">
+                Run your tutoring<br>
+                practice <span class="text-gradient">effortlessly</span>
+            </h1>
+            <p class="hero-subtitle">
+                Chalkly is the all-in-one companion app that helps tutors manage students,
+                track attendance, record test results, and share progress with parents —
+                all through simple 6-digit access codes.
+            </p>
+            <div class="hero-actions">
+                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
+                    Download on Google Play
+                </a>
+                <a href="#how-it-works" class="btn btn-secondary btn-lg">
+                    See how it works
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+            <div class="hero-trust">
+                <div class="trust-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>Secure Google Sign-In</span>
+                </div>
+                <div class="trust-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>Save hours every week</span>
+                </div>
+                <div class="trust-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span>Parents stay informed</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="phone-mockup">
+                <div class="phone-frame">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <div class="app-header-bar">
+                            <div class="app-bar-title">My Students</div>
+                            <div class="app-bar-icon">+</div>
+                        </div>
+                        <div class="app-stats-row">
+                            <div class="mini-stat">
+                                <div class="mini-stat-num">28</div>
+                                <div class="mini-stat-label">Students</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-num">94%</div>
+                                <div class="mini-stat-label">Attendance</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="mini-stat-num">12</div>
+                                <div class="mini-stat-label">Tests</div>
+                            </div>
+                        </div>
+                        <div class="app-card">
+                            <div class="card-avatar avatar-1">AS</div>
+                            <div class="card-info">
+                                <div class="card-name">Aarav Sharma</div>
+                                <div class="card-meta">Grade 8 · Mathematics</div>
+                            </div>
+                            <div class="card-code">482913</div>
+                        </div>
+                        <div class="app-card">
+                            <div class="card-avatar avatar-2">PK</div>
+                            <div class="card-info">
+                                <div class="card-name">Priya Kumar</div>
+                                <div class="card-meta">Grade 10 · Science</div>
+                            </div>
+                            <div class="card-code">739205</div>
+                        </div>
+                        <div class="app-card">
+                            <div class="card-avatar avatar-3">RV</div>
+                            <div class="card-info">
+                                <div class="card-name">Rohan Verma</div>
+                                <div class="card-meta">Grade 9 · English</div>
+                            </div>
+                            <div class="card-code">156842</div>
+                        </div>
+                        <div class="app-card highlight">
+                            <div class="card-avatar avatar-4">MA</div>
+                            <div class="card-info">
+                                <div class="card-name">Meera Anand</div>
+                                <div class="card-meta">Grade 7 · Mathematics</div>
+                            </div>
+                            <div class="card-code">920174</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-card fc-1">
+                    <div class="fc-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div>
+                        <div class="fc-title">Attendance Marked</div>
+                        <div class="fc-sub">5 students · Today</div>
+                    </div>
+                </div>
+                <div class="floating-card fc-2">
+                    <div class="fc-icon" style="background: linear-gradient(135deg, #F59E0B, #EF4444);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <div>
+                        <div class="fc-title">Progress Up 12%</div>
+                        <div class="fc-sub">This month</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== STATS BAR ============== -->
+<section class="stats-bar">
+    <div class="container stats-container">
+        <div class="stat-item">
+            <div class="stat-num">6-digit</div>
+            <div class="stat-label">Parent Access Codes</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Data Encrypted</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+            <div class="stat-num">48hr</div>
+            <div class="stat-label">Support Response</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+            <div class="stat-num">Free</div>
+            <div class="stat-label">Plan Available</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== FEATURES ============== -->
+<section class="features" id="features">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Features</span>
+            <h2 class="section-title">Everything you need to <span class="text-gradient">teach smarter</span></h2>
+            <p class="section-subtitle">From attendance to analytics — all the tools a modern tutor needs, designed mobile-first and ready in seconds.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon icon-1">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3>Student Management</h3>
+                <p>Add and manage unlimited students (premium). Store name, grade, subject, and board — all in one place.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-2">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg>
+                </div>
+                <h3>Attendance Tracking</h3>
+                <p>Mark Present, Absent, Late, or Cancelled in seconds. Bulk update for entire batches and generate reports.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-3">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                </div>
+                <h3>Test Results & Analytics</h3>
+                <p>Record marks, track percentages, and visualize performance across subjects and months at a glance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-4">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <h3>Feedback & Communication</h3>
+                <p>Write rich feedback for each student and publish it for parents to view — no more repeated calls.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-5">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <h3>Smart Scheduling</h3>
+                <p>Create recurring weekly schedules. Smart conflict detection prevents double-booking of any slot.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-6">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>Secure & Private</h3>
+                <p>Google Sign-In authentication, encrypted data in transit and at rest, and unique code-based student access.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== HOW IT WORKS ============== -->
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">How it works</span>
+            <h2 class="section-title">Three simple steps to <span class="text-gradient">digitize your class</span></h2>
+            <p class="section-subtitle">No complex setup, no training needed. Get started in under 2 minutes.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <h3>Sign in & Add Students</h3>
+                <p>Login securely with your Google account. Add students with their name, grade, subject, and board.</p>
+            </div>
+            <div class="step-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                </div>
+                <h3>Track Daily</h3>
+                <p>Mark attendance, record test marks, and write feedback — all in just a few taps during or after class.</p>
+            </div>
+            <div class="step-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <div class="step-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                </div>
+                <h3>Share with Parents</h3>
+                <p>Share a unique 6-digit code with parents. They can view progress instantly — no account required.</p>
+            </div>
+        </div>
+
+        <!-- Highlighted feature: 6-digit access -->
+        <div class="highlight-feature">
+            <div class="highlight-content">
+                <div class="highlight-tag">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    Unique to Chalkly
+                </div>
+                <h3>6-digit parent access codes — zero friction</h3>
+                <p>Each student gets a unique 6-digit code. Parents simply open Chalkly, enter the code, and instantly see attendance, test scores, and your feedback. No app install. No email. No password. Just instant transparency that parents love.</p>
+                <ul class="highlight-list">
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        No account creation for parents or students
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        View-only access — privacy preserved
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Reduces "how is my child doing?" calls by 90%
+                    </li>
+                </ul>
+            </div>
+            <div class="highlight-visual">
+                <div class="code-display">
+                    <div class="code-label">Student Access Code</div>
+                    <div class="code-digits">
+                        <span>4</span><span>8</span><span>2</span><span>9</span><span>1</span><span>3</span>
+                    </div>
+                    <div class="code-result">
+                        <div class="result-row">
+                            <div class="result-label">Attendance</div>
+                            <div class="result-value success">96%</div>
+                        </div>
+                        <div class="result-row">
+                            <div class="result-label">Last Test</div>
+                            <div class="result-value">88/100</div>
+                        </div>
+                        <div class="result-row">
+                            <div class="result-label">Tutor Feedback</div>
+                            <div class="result-value feedback">"Excellent progress this month!"</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== USE CASES ============== -->
+<section class="use-cases">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Perfect for</span>
+            <h2 class="section-title">Built for <span class="text-gradient">every kind of educator</span></h2>
+        </div>
+        <div class="usecase-grid">
+            <div class="usecase-card">
+                <div class="usecase-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <h4>Private Tutors</h4>
+                <p>Managing multiple students across different subjects and grades.</p>
+            </div>
+            <div class="usecase-card">
+                <div class="usecase-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <h4>Tuition Centers</h4>
+                <p>Tracking batch attendance and group performance metrics.</p>
+            </div>
+            <div class="usecase-card">
+                <div class="usecase-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+                </div>
+                <h4>Coaching Institutes</h4>
+                <p>Monitoring student progress across competitive exam batches.</p>
+            </div>
+            <div class="usecase-card">
+                <div class="usecase-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+                <h4>Homeschooling Parents</h4>
+                <p>Documenting learning journeys for multiple children at home.</p>
+            </div>
+            <div class="usecase-card">
+                <div class="usecase-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </div>
+                <h4>School Teachers</h4>
+                <p>Tracking supplementary tuition classes outside school hours.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== PRICING ============== -->
+<section class="pricing" id="pricing">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Pricing</span>
+            <h2 class="section-title">Start free. <span class="text-gradient">Upgrade when ready.</span></h2>
+            <p class="section-subtitle">No hidden fees. No credit card required. Cancel anytime.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Free</h3>
+                    <p>Perfect to get started</p>
+                </div>
+                <div class="pricing-amount">
+                    <span class="price">₹0</span>
+                    <span class="period">/ forever</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Up to 5 students
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Basic attendance tracking
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Test result recording
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Feedback management
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        6-digit parent access codes
+                    </li>
+                </ul>
+                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="btn btn-secondary btn-full">
+                    Get Started Free
+                </a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-header">
+                    <h3>Premium</h3>
+                    <p>For serious tutors</p>
+                </div>
+                <div class="pricing-amount">
+                    <span class="price">Unlock</span>
+                    <span class="period">in app</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <strong>Unlimited students</strong>
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Advanced analytics dashboard
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Export reports as PDF
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Bulk attendance & operations
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Priority email support
+                    </li>
+                </ul>
+                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="btn btn-primary btn-full">
+                    Upgrade in App
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== TESTIMONIALS ============== -->
+<section class="testimonials" id="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Loved by tutors</span>
+            <h2 class="section-title">Hear from <span class="text-gradient">real educators</span></h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <p class="testimonial-text">"I used to maintain separate notebooks for each student. Chalkly digitized everything — attendance, fees, progress — all in one place. My evenings are free again."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background: linear-gradient(135deg, #EC4899, #F59E0B);">PS</div>
+                    <div>
+                        <div class="author-name">Priya S.</div>
+                        <div class="author-role">Mathematics Tutor · Bengaluru</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <p class="testimonial-text">"The access code feature is brilliant. Parents can check their child's progress anytime without calling me. It's cut my phone calls in half and parents are happier."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background: linear-gradient(135deg, #6366F1, #06B6D4);">RK</div>
+                    <div>
+                        <div class="author-name">Rajesh K.</div>
+                        <div class="author-role">Science Tutor · Delhi</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <p class="testimonial-text">"Running a coaching institute with 60+ students used to be chaos. With Chalkly's bulk attendance and reports, I save 5+ hours every week. Worth every rupee."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background: linear-gradient(135deg, #10B981, #3B82F6);">AM</div>
+                    <div>
+                        <div class="author-name">Anita M.</div>
+                        <div class="author-role">Coaching Owner · Pune</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== FAQ ============== -->
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">FAQ</span>
+            <h2 class="section-title">Questions? <span class="text-gradient">We've got answers.</span></h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is Chalkly free to use?</span>
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes! Chalkly offers a generous free plan with up to 5 students, basic attendance tracking, test recording, and feedback features. You can upgrade to Premium in-app to unlock unlimited students and advanced features.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Do parents need to create an account?</span>
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>No. Parents and students access their information using a unique 6-digit code you generate for each student. No email, no password, no app download required — just instant access to attendance, test results, and your feedback.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is my data secure?</span>
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Absolutely. Chalkly uses Google Sign-In for tutor authentication, and all data is encrypted in transit and at rest. We never share your data with third parties, and you can request deletion of your data at any time.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Can I export reports?</span>
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes — PDF report export is available on the Premium plan. Generate comprehensive student reports including attendance percentages, performance trends, and feedback summaries that you can share or print.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Does it work offline?</span>
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Chalkly is designed primarily for online use to ensure data syncs across your devices and parents see real-time updates. An active internet connection is recommended for the best experience.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How do I get support?</span>
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Reach out to us at <a href="mailto:factictionary@gmail.com">factictionary@gmail.com</a> or call <a href="tel:+919739783540">+91 97397 83540</a>. We typically respond within 48 hours, and Premium users receive priority support.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== FINAL CTA ============== -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-card">
+            <div class="cta-bg-shapes">
+                <div class="cta-shape shape-1"></div>
+                <div class="cta-shape shape-2"></div>
+            </div>
+            <div class="cta-content">
+                <h2>Ready to transform your tutoring practice?</h2>
+                <p>Join thousands of Indian educators who use Chalkly to save time, delight parents, and grow their teaching business.</p>
+                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="btn btn-white btn-lg">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
+                    Download Free on Google Play
+                </a>
+                <div class="cta-meta">
+                    Free to start · No credit card · Android 6.0+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#home" class="nav-brand">
+                    <span class="brand-logo">
+                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="10" fill="url(#brandGrad2)"/>
+                            <path d="M11 27L20 11L29 27H11Z" fill="white" opacity="0.95"/>
+                            <circle cx="20" cy="22" r="2" fill="#FF6B6B"/>
+                            <defs>
+                                <linearGradient id="brandGrad2" x1="0" y1="0" x2="40" y2="40">
+                                    <stop offset="0%" stop-color="#6366F1"/>
+                                    <stop offset="100%" stop-color="#8B5CF6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </span>
+                    <span class="brand-text">Chalkly</span>
+                </a>
+                <p class="footer-tagline">The ultimate companion app for tutors and educators. Built with love in India by Factictionary.</p>
+                <div class="footer-developer">
+                    <div class="dev-label">Developer</div>
+                    <div class="dev-name">Factictionary</div>
+                    <div class="dev-address">Bengaluru, Karnataka, India</div>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How it Works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener">Get on Google Play</a>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <a href="mailto:factictionary@gmail.com">Email Support</a>
+                <a href="tel:+919739783540">Call Us</a>
+                <a href="https://chalkly.factictionary.in" target="_blank" rel="noopener">Official Website</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="https://chalkly.factictionary.in/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
+                <a href="https://chalkly.factictionary.in/terms-service.html" target="_blank" rel="noopener">Terms of Service</a>
+                <a href="https://play.google.com/store/apps/dev?id=Factictionary" target="_blank" rel="noopener">All Apps by Factictionary</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2026 Factictionary. All rights reserved.</div>
+            <div class="footer-bottom-links">
+                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener">Google Play</a>
+                <span>·</span>
+                <a href="mailto:factictionary@gmail.com">Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
