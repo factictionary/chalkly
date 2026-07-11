@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Tools for Tutors — Chalkly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  :root {
+    --bg:        #f5f4f0;
+    --surface:   #ffffff;
+    --surface2:  #f9f8f5;
+    --border:    #e4e2da;
+    --border2:   #d0cec5;
+    --text:      #1a1916;
+    --text2:     #5a584f;
+    --text3:     #8a887e;
+    --accent:    #1a6ef0;
+    --accent-bg: #e8f0fe;
+    --accent-bd: #bcd0fa;
+    --accent-tx: #1a4fa8;
+    --green:     #1e7e4a;
+    --green-bg:  #e6f4ec;
+    --green-bd:  #9ed4b3;
+    --amber:     #9a6000;
+    --amber-bg:  #fef6e0;
+    --amber-bd:  #f5d580;
+    --red:       #c0392b;
+    --radius:    8px;
+    --radius-lg: 14px;
+    --shadow:    0 1px 4px rgba(0,0,0,.06), 0 0 0 0.5px rgba(0,0,0,.08);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.05), 0 0 0 0.5px rgba(0,0,0,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:        #111110;
+      --surface:   #1c1c1a;
+      --surface2:  #242421;
+      --border:    #2e2e2b;
+      --border2:   #3a3a36;
+      --text:      #f0ede6;
+      --text2:     #a8a59c;
+      --text3:     #6a6860;
+      --accent:    #5b9bf8;
+      --accent-bg: #172040;
+      --accent-bd: #2a4a80;
+      --accent-tx: #7ab2fa;
+      --green:     #4aba78;
+      --green-bg:  #102a1c;
+      --green-bd:  #1e5a34;
+      --amber:     #e8a830;
+      --amber-bg:  #2a1e08;
+      --amber-bd:  #5a3c10;
+      --red:       #e05a4e;
+      --shadow:    0 1px 4px rgba(0,0,0,.3), 0 0 0 0.5px rgba(255,255,255,.05);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.2), 0 0 0 0.5px rgba(255,255,255,.04);
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Page wrapper ── */
+  .page { max-width: 780px; margin: 0 auto; padding: 0 16px 60px; }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    padding: 52px 16px 36px;
+  }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 20px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, #1a6ef0 0%, #0d4fb5 100%);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 18px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--green-bg);
+    color: var(--green);
+    border: 0.5px solid var(--green-bd);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -.5px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .header p {
+    font-size: 16px;
+    color: var(--text2);
+    max-width: 520px;
+    margin: 0 auto 28px;
+    line-height: 1.65;
+  }
+  .header-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: var(--radius);
+    transition: opacity .15s;
+  }
+  .header-cta:hover { opacity: .88; }
+
+  /* ── Tabs ── */
+  .tabs-wrap {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+  .tabs {
+    display: flex;
+    border-bottom: 0.5px solid var(--border);
+    overflow-x: auto;
+    background: var(--surface2);
+  }
+  .tabs::-webkit-scrollbar { height: 0; }
+  .tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    color: var(--text2);
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s, background .15s;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .tab i { margin-right: 5px; font-size: 15px; vertical-align: -2px; }
+  .tab:hover { color: var(--text); background: var(--surface); }
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    background: var(--surface);
+  }
+
+  /* ── Tool panel ── */
+  .tool { display: none; padding: 28px 28px 24px; }
+  .tool.active { display: block; }
+
+  .tool-header { margin-bottom: 20px; }
+  .tool-header h2 { font-size: 20px; font-weight: 600; margin-bottom: 5px; }
+  .tool-header p { font-size: 14px; color: var(--text2); line-height: 1.6; }
+
+  /* ── Form elements ── */
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .row.three { grid-template-columns: 1fr 1fr 1fr; }
+  @media (max-width: 560px) {
+    .row, .row.three { grid-template-columns: 1fr; }
+  }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--text3);
+  }
+  input, select {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius);
+    background: var(--surface2);
+    color: var(--text);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(26,110,240,.12);
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a887e' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 32px;
+    cursor: pointer;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    height: 0.5px;
+    background: var(--border);
+    margin: 18px 0;
+  }
+
+  /* ── Result box ── */
+  .result-box {
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px;
+    margin: 18px 0 14px;
+  }
+  .result-box .rl { font-size: 12px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+  .result-box .rv { font-size: 34px; font-weight: 600; letter-spacing: -.5px; color: var(--text); line-height: 1.1; }
+  .result-box .rs { font-size: 13px; color: var(--text2); margin-top: 6px; line-height: 1.5; }
+
+  /* ── Metric cards ── */
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .metric {
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+  }
+  .metric .ml { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+  .metric .mv { font-size: 22px; font-weight: 600; color: var(--text); }
+  .metric .mv.green { color: var(--green); }
+  .metric .mv.amber { color: var(--amber); }
+  .metric .mv.red   { color: var(--red); }
+
+  /* ── Tip ── */
+  .tip {
+    font-size: 13px;
+    color: var(--text2);
+    background: var(--amber-bg);
+    border-left: 3px solid var(--amber-bd);
+    padding: 10px 14px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 14px 0;
+    line-height: 1.6;
+  }
+  .tip i { color: var(--amber); margin-right: 5px; vertical-align: -2px; }
+
+  /* ── CTA block ── */
+  .cta-block {
+    background: var(--accent-bg);
+    border: 0.5px solid var(--accent-bd);
+    border-radius: var(--radius-lg);
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .cta-text .ct { font-size: 14px; font-weight: 600; color: var(--accent-tx); margin-bottom: 3px; }
+  .cta-text .cs { font-size: 12px; color: var(--accent-tx); opacity: .75; line-height: 1.5; }
+  .cta-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity .15s;
+  }
+  .cta-btn:hover { opacity: .88; }
+  @media (max-width: 500px) {
+    .cta-block { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ── Schedule grid ── */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin: 16px 0;
+  }
+  @media (max-width: 480px) {
+    .schedule-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .day-col { display: flex; flex-direction: column; gap: 5px; }
+  .day-head {
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text3);
+    padding: 4px 0 6px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  .slot-chip {
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    padding: 7px 3px;
+    font-size: 10px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: all .12s;
+    color: var(--text3);
+    user-select: none;
+    line-height: 1.3;
+  }
+  .slot-chip:hover { border-color: var(--accent); color: var(--text); }
+  .slot-chip.selected {
+    background: var(--accent-bg);
+    border-color: var(--accent);
+    color: var(--accent-tx);
+    font-weight: 600;
+  }
+
+  /* ── Code tags ── */
+  .codes-grid { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+  .code-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface2);
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--text);
+  }
+  .copy-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text3);
+    padding: 0;
+    font-size: 14px;
+    line-height: 1;
+    transition: color .1s;
+  }
+  .copy-btn:hover { color: var(--accent); }
+  .copy-btn.copied { color: var(--green); }
+
+  /* ── Action buttons row ── */
+  .btn-row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface);
+    color: var(--text);
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .12s, border-color .12s;
+  }
+  .btn-outline:hover { background: var(--surface2); border-color: var(--accent); }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 40px 16px 20px;
+    color: var(--text3);
+    font-size: 13px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" class="logo" target="_blank">
+      <div class="logo-icon"><i class="ti ti-school"></i></div>
+      Chalkly
+    </a>
+    <div class="badge"><i class="ti ti-check"></i> Free — no signup needed</div>
+    <h1>Free tools for private tutors</h1>
+    <p>Calculate student fees, plan your weekly schedule, estimate monthly income, and generate student access codes — instantly.</p>
+    <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" class="header-cta" target="_blank">
+      <i class="ti ti-brand-google-play"></i> Download Chalkly on Android
+    </a>
+  </div>
+
+  <!-- Tool card -->
+  <div class="tabs-wrap">
+    <div class="tabs" role="tablist">
+      <div class="tab active" onclick="switchTab('fee',this)" role="tab"><i class="ti ti-calculator"></i>Fee calculator</div>
+      <div class="tab" onclick="switchTab('schedule',this)" role="tab"><i class="ti ti-calendar-week"></i>Schedule planner</div>
+      <div class="tab" onclick="switchTab('income',this)" role="tab"><i class="ti ti-chart-bar"></i>Income estimator</div>
+      <div class="tab" onclick="switchTab('codes',this)" role="tab"><i class="ti ti-key"></i>Access codes</div>
+    </div>
+
+    <!-- Fee calculator -->
+    <div id="fee" class="tool active">
+      <div class="tool-header">
+        <h2>Student fee calculator</h2>
+        <p>Work out exactly what to charge — monthly, hourly, or per package — with attendance deductions calculated automatically.</p>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Billing type</label>
+          <select id="billingType" onchange="calcFee()">
+            <option value="monthly">Monthly flat fee</option>
+            <option value="hourly">Hourly rate</option>
+            <option value="package">Package sessions</option>
+          </select>
+        </div>
+        <div class="field" id="feeAmtField">
+          <label id="feeAmtLabel">Monthly fee (₹)</label>
+          <input type="number" id="feeAmount" value="3000" oninput="calcFee()">
+        </div>
+      </div>
+      <div class="row" id="attendanceRow">
+        <div class="field">
+          <label>Sessions this month</label>
+          <input type="number" id="totalSessions" value="12" min="1" oninput="calcFee()">
+        </div>
+        <div class="field">
+          <label>Sessions attended</label>
+          <input type="number" id="attended" value="10" min="0" oninput="calcFee()">
+        </div>
+      </div>
+      <div class="row" id="pkgRow" style="display:none">
+        <div class="field">
+          <label>Sessions in package</label>
+          <input type="number" id="pkgSessions" value="8" min="1" oninput="calcFee()">
+        </div>
+        <div class="field">
+          <label>Package price (₹)</label>
+          <input type="number" id="pkgPrice" value="4000" oninput="calcFee()">
+        </div>
+      </div>
+      <div class="result-box">
+        <div class="rl">Amount due this month</div>
+        <div class="rv" id="feeResult">₹2,500</div>
+        <div class="rs" id="feeSub">10 of 12 sessions attended · ₹250 deducted for 2 missed</div>
+      </div>
+      <div class="tip" id="feeTip"><i class="ti ti-bulb"></i><span id="feeTipText">For monthly billing, consider charging the full fee regardless of attendance — this is standard practice and avoids month-end disputes.</span></div>
+      <div class="cta-block">
+        <div class="cta-text">
+          <div class="ct">Automate this in Chalkly</div>
+          <div class="cs">Billing is calculated from attendance automatically. No month-end maths.</div>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" class="cta-btn" target="_blank">
+          <i class="ti ti-brand-google-play"></i> Get the app
+        </a>
+      </div>
+    </div>
+
+    <!-- Schedule planner -->
+    <div id="schedule" class="tool">
+      <div class="tool-header">
+        <h2>Weekly schedule planner</h2>
+        <p>Map out your week by tapping slots. See total teaching hours, student capacity, and monthly commitment.</p>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Slot duration</label>
+          <select id="slotDur" onchange="calcSchedule()">
+            <option value="45">45 minutes</option>
+            <option value="60" selected>1 hour</option>
+            <option value="90">1.5 hours</option>
+            <option value="120">2 hours</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Max students per slot</label>
+          <input type="number" id="maxPerSlot" value="1" min="1" max="10" oninput="calcSchedule()">
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--text3);margin-bottom:8px;font-weight:500">Tap slots to toggle — morning, afternoon, evening</p>
+      <div class="schedule-grid" id="scheduleGrid"></div>
+      <div class="metrics">
+        <div class="metric"><div class="ml">Slots per week</div><div class="mv" id="totalSlots">0</div></div>
+        <div class="metric"><div class="ml">Teaching hrs/week</div><div class="mv green" id="teachHrs">0</div></div>
+        <div class="metric"><div class="ml">Max students/week</div><div class="mv" id="maxStudents">0</div></div>
+        <div class="metric"><div class="ml">Teaching hrs/month</div><div class="mv amber" id="monthHrs">0</div></div>
+      </div>
+      <div class="cta-block">
+        <div class="cta-text">
+          <div class="ct">Set this up in Chalkly</div>
+          <div class="cs">Each student gets their own days and times. Conflicts caught automatically.</div>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" class="cta-btn" target="_blank">
+          <i class="ti ti-brand-google-play"></i> Get the app
+        </a>
+      </div>
+    </div>
+
+    <!-- Income estimator -->
+    <div id="income" class="tool">
+      <div class="tool-header">
+        <h2>Monthly income estimator</h2>
+        <p>Model your earnings across different student types and billing methods. See your annual projection and whether you need Chalkly's free or pro plan.</p>
+      </div>
+      <p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);margin-bottom:10px">Monthly fee students</p>
+      <div class="row three">
+        <div class="field"><label>No. of students</label><input type="number" id="mCount" value="5" min="0" oninput="calcIncome()"></div>
+        <div class="field"><label>Fee each (₹/mo)</label><input type="number" id="mFee" value="3000" oninput="calcIncome()"></div>
+        <div class="field"><label>Avg attendance %</label><input type="number" id="mAtt" value="100" min="0" max="100" oninput="calcIncome()"></div>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);margin-bottom:10px">Hourly students</p>
+      <div class="row three">
+        <div class="field"><label>No. of students</label><input type="number" id="hCount" value="3" min="0" oninput="calcIncome()"></div>
+        <div class="field"><label>Rate (₹/hr)</label><input type="number" id="hRate" value="500" oninput="calcIncome()"></div>
+        <div class="field"><label>Sessions/month each</label><input type="number" id="hSessions" value="10" oninput="calcIncome()"></div>
+      </div>
+      <div class="divider"></div>
+      <p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);margin-bottom:10px">Package students</p>
+      <div class="row three">
+        <div class="field"><label>No. of students</label><input type="number" id="pCount" value="2" min="0" oninput="calcIncome()"></div>
+        <div class="field"><label>Package price (₹)</label><input type="number" id="pFee" value="4000" oninput="calcIncome()"></div>
+        <div class="field"><label>Packages/month each</label><input type="number" id="pPm" value="1" oninput="calcIncome()"></div>
+      </div>
+      <div class="result-box">
+        <div class="rl">Total monthly income</div>
+        <div class="rv" id="totalIncome">₹0</div>
+        <div class="rs" id="incomeSub"></div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="ml">Annual projection</div><div class="mv green" id="annualIncome">₹0</div></div>
+        <div class="metric"><div class="ml">Total students</div><div class="mv" id="totalStudents">0</div></div>
+        <div class="metric"><div class="ml">Income per student</div><div class="mv amber" id="perStudent">₹0</div></div>
+        <div class="metric"><div class="ml">Chalkly plan needed</div><div class="mv" id="planNeeded" style="font-size:15px">Free</div></div>
+      </div>
+      <div class="cta-block">
+        <div class="cta-text">
+          <div class="ct">Track this every month automatically</div>
+          <div class="cs">Bills generated from attendance. Income trends visible at a glance.</div>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" class="cta-btn" target="_blank">
+          <i class="ti ti-brand-google-play"></i> Get the app
+        </a>
+      </div>
+    </div>
+
+    <!-- Access codes -->
+    <div id="codes" class="tool">
+      <div class="tool-header">
+        <h2>Student access code generator</h2>
+        <p>Generate unique 6-character codes to share with students or parents — the same format Chalkly uses. Students log in with this code to see their schedule, attendance, and feedback.</p>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Number of codes</label>
+          <input type="number" id="codeCount" value="6" min="1" max="30" oninput="genCodes()">
+        </div>
+        <div class="field">
+          <label>Code format</label>
+          <select id="codeStyle" onchange="genCodes()">
+            <option value="mixed">Letters + numbers (default)</option>
+            <option value="alpha">Letters only (easier to say aloud)</option>
+            <option value="num">Numbers only</option>
+          </select>
+        </div>
+      </div>
+      <div class="codes-grid" id="codesOut"></div>
+      <div class="btn-row">
+        <button class="btn-outline" onclick="genCodes()"><i class="ti ti-refresh"></i> Regenerate</button>
+        <button class="btn-outline" id="copyAllBtn" onclick="copyAll()"><i class="ti ti-copy"></i> Copy all codes</button>
+      </div>
+      <div class="tip"><i class="ti ti-bulb"></i>In Chalkly, codes are generated automatically when you add a student — no need to manage them separately. Share the code with the parent, and they can log in instantly.</div>
+      <div class="cta-block">
+        <div class="cta-text">
+          <div class="ct">Manage all student codes in one place</div>
+          <div class="cs">Add a student → code generated → share with parent. Done.</div>
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" class="cta-btn" target="_blank">
+          <i class="ti ti-brand-google-play"></i> Get the app
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Made by <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank">Chalkly</a> — the tutor's assistant app for Android.</p>
+    <p style="margin-top:6px">Free to download · No account required for these tools</p>
+  </div>
+
+</div>
+
+<script>
+const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+let selectedSlots = {};
+let generatedCodes = [];
+
+function switchTab(id, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tool').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(id).classList.add('active');
+  if (id === 'schedule' && !document.getElementById('scheduleGrid').children.length) buildSchedule();
+  if (id === 'codes' && !generatedCodes.length) genCodes();
+}
+
+function inr(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+
+/* ── Fee calculator ── */
+function calcFee() {
+  const type = document.getElementById('billingType').value;
+  const ar = document.getElementById('attendanceRow');
+  const pkgR = document.getElementById('pkgRow');
+  const label = document.getElementById('feeAmtLabel');
+  ar.style.display = 'grid'; pkgR.style.display = 'none';
+  let result = 0, sub = '', tip = '';
+
+  if (type === 'monthly') {
+    label.textContent = 'Monthly fee (₹)';
+    const fee = +document.getElementById('feeAmount').value || 0;
+    const total = +document.getElementById('totalSessions').value || 1;
+    const att = Math.min(total, +document.getElementById('attended').value || 0);
+    const missed = total - att;
+    const deduct = (fee / total) * missed;
+    result = fee - deduct;
+    sub = att + ' of ' + total + ' sessions attended' + (missed > 0 ? ' · ' + inr(deduct) + ' deducted for ' + missed + ' missed' : ' · Full fee applies');
+    tip = 'For monthly billing, consider charging the full fee regardless of attendance — this is standard practice and avoids month-end disputes.';
+  } else if (type === 'hourly') {
+    label.textContent = 'Hourly rate (₹)';
+    const rate = +document.getElementById('feeAmount').value || 0;
+    const att = +document.getElementById('attended').value || 0;
+    result = rate * att;
+    sub = att + ' sessions × ' + inr(rate) + ' = ' + inr(result);
+    tip = 'Hourly billing is transparent and fair — students only pay for classes they attend.';
+  } else {
+    label.textContent = 'Hourly rate (₹)';
+    ar.style.display = 'none'; pkgR.style.display = 'grid';
+    const pkgS = +document.getElementById('pkgSessions').value || 1;
+    const pkgP = +document.getElementById('pkgPrice').value || 0;
+    const att = +document.getElementById('attended').value || 0;
+    result = pkgP;
+    sub = Math.min(att, pkgS) + ' of ' + pkgS + ' package sessions used · Full package fee applies';
+    tip = 'Package billing gives students a clear commitment and improves retention — they prepay and are more likely to show up.';
+  }
+  document.getElementById('feeResult').textContent = inr(result);
+  document.getElementById('feeSub').textContent = sub;
+  document.getElementById('feeTipText').textContent = tip;
+}
+
+/* ── Schedule planner ── */
+function buildSchedule() {
+  const grid = document.getElementById('scheduleGrid');
+  grid.innerHTML = '';
+  const periods = [['AM','6–9am'],['PM','2–5pm'],['Eve','5–8pm']];
+  DAYS.forEach((d, di) => {
+    const col = document.createElement('div');
+    col.className = 'day-col';
+    col.innerHTML = '<div class="day-head">' + d + '</div>';
+    periods.forEach((p, pi) => {
+      const key = di + '-' + pi;
+      const chip = document.createElement('div');
+      chip.className = 'slot-chip' + (selectedSlots[key] ? ' selected' : '');
+      chip.innerHTML = '<strong>' + p[0] + '</strong><br>' + p[1];
+      chip.onclick = () => {
+        selectedSlots[key] = !selectedSlots[key];
+        chip.classList.toggle('selected');
+        calcSchedule();
+      };
+      col.appendChild(chip);
+    });
+    grid.appendChild(col);
+  });
+  calcSchedule();
+}
+
+function calcSchedule() {
+  const dur = +document.getElementById('slotDur').value || 60;
+  const max = +document.getElementById('maxPerSlot').value || 1;
+  const total = Object.values(selectedSlots).filter(Boolean).length;
+  const hrs = (total * dur / 60);
+  document.getElementById('totalSlots').textContent = total;
+  document.getElementById('teachHrs').textContent = hrs.toFixed(1);
+  document.getElementById('maxStudents').textContent = total * max;
+  document.getElementById('monthHrs').textContent = Math.round(hrs * 4.3);
+}
+
+/* ── Income estimator ── */
+function calcIncome() {
+  const mC = +document.getElementById('mCount').value || 0;
+  const mF = +document.getElementById('mFee').value || 0;
+  const hC = +document.getElementById('hCount').value || 0;
+  const hR = +document.getElementById('hRate').value || 0;
+  const hS = +document.getElementById('hSessions').value || 0;
+  const pC = +document.getElementById('pCount').value || 0;
+  const pF = +document.getElementById('pFee').value || 0;
+  const pP = +document.getElementById('pPm').value || 1;
+  const mI = mC * mF;
+  const hI = hC * hR * hS;
+  const pI = pC * pF * pP;
+  const total = mI + hI + pI;
+  const students = mC + hC + pC;
+  document.getElementById('totalIncome').textContent = inr(total);
+  document.getElementById('incomeSub').textContent = 'Monthly: ' + inr(mI) + ' · Hourly: ' + inr(hI) + ' · Package: ' + inr(pI);
+  document.getElementById('annualIncome').textContent = inr(total * 12);
+  document.getElementById('totalStudents').textContent = students;
+  document.getElementById('perStudent').textContent = students ? inr(total / students) : '—';
+  const planEl = document.getElementById('planNeeded');
+  if (students <= 5) { planEl.textContent = 'Free plan'; planEl.className = 'mv green'; }
+  else { planEl.textContent = 'Pro plan'; planEl.className = 'mv amber'; }
+}
+
+/* ── Code generator ── */
+function genCodes() {
+  const n = Math.min(30, Math.max(1, +document.getElementById('codeCount').value || 6));
+  const style = document.getElementById('codeStyle').value;
+  const A = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+  const N = '23456789';
+  const pool = style === 'alpha' ? A : style === 'num' ? N : A + N;
+  const codes = new Set();
+  while (codes.size < n) {
+    let c = '';
+    for (let i = 0; i < 6; i++) c += pool[Math.floor(Math.random() * pool.length)];
+    codes.add(c);
+  }
+  generatedCodes = [...codes];
+  const out = document.getElementById('codesOut');
+  out.innerHTML = '';
+  generatedCodes.forEach((code, i) => {
+    const el = document.createElement('div');
+    el.className = 'code-tag';
+    const btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.innerHTML = '<i class="ti ti-copy"></i>';
+    btn.title = 'Copy ' + code;
+    btn.onclick = () => {
+      navigator.clipboard.writeText(code).then(() => {
+        btn.innerHTML = '<i class="ti ti-check"></i>';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.innerHTML = '<i class="ti ti-copy"></i>'; btn.classList.remove('copied'); }, 1500);
+      });
+    };
+    el.appendChild(document.createTextNode(code));
+    el.appendChild(btn);
+    out.appendChild(el);
+  });
+}
+
+function copyAll() {
+  navigator.clipboard.writeText(generatedCodes.join('\n')).then(() => {
+    const btn = document.getElementById('copyAllBtn');
+    btn.innerHTML = '<i class="ti ti-check"></i> Copied!';
+    setTimeout(() => { btn.innerHTML = '<i class="ti ti-copy"></i> Copy all codes'; }, 2000);
+  });
+}
+
+calcFee();
+calcIncome();
+</script>
+</body>
+</html>
