@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutor Portal — Chalkly</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyC_EqrZQl34UDFN6TWEEQ1F9VNVNavJ8vw",
+      authDomain: "chalkly-af969.firebaseapp.com",
+      projectId: "chalkly-af969",
+      storageBucket: "chalkly-af969.firebasestorage.app",
+      messagingSenderId: "814235169520",
+      appId: "1:814235169520:web:167d7f0a46abe1f2f6c835",
+      measurementId: "G-KBZHM82FNE"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // Supabase Config
+    const SUPABASE_URL = "https://nyijxqblwabiuvbifixr.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_hH_Xz9iUge7870QweZXkhQ_B-qZAtOx";
+    const { createClient } = supabase;
+    const client = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    window.fbAuth = auth;
+    window.fbProvider = provider;
+    window.signInWithPopup = signInWithPopup;
+    window.signOut = signOut;
+    window.supabaseClient = client;
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        document.getElementById('loggedOutView').classList.add('hidden');
+        document.getElementById('loggedInView').classList.remove('hidden');
+        document.getElementById('userDisplayName').innerText = user.displayName;
+        document.getElementById('userAvatar').src = user.photoURL || '';
+        await loadExistingProfile(user.uid);
+      } else {
+        document.getElementById('loggedOutView').classList.remove('hidden');
+        document.getElementById('loggedInView').classList.add('hidden');
+      }
+    });
+
+    async function loadExistingProfile(uid) {
+      const { data } = await client
+        .from('tutor_profiles')
+        .select('*')
+        .eq('firebase_uid', uid)
+        .single();
+
+      if (data) {
+        document.getElementById('headline').value = data.headline || '';
+        document.getElementById('bio').value = data.bio || '';
+        document.getElementById('subjects').value = (data.subjects || []).join(', ');
+        document.getElementById('city').value = data.city || '';
+        document.getElementById('whatsapp').value = data.whatsapp_number || '';
+        document.getElementById('experience').value = data.experience_years || '';
+        document.getElementById('rate').value = data.rate_text || '';
+        document.getElementById('modeOnline').checked = (data.modes || []).includes('online');
+        document.getElementById('modeInPerson').checked = (data.modes || []).includes('in-person');
+        
+        // Show Live Profile URL Box
+        const profileUrl = `${window.location.origin}/tutor.html?id=${uid}`;
+        document.getElementById('liveUrlDisplay').value = profileUrl;
+        document.getElementById('liveUrlBox').classList.remove('hidden');
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="tutors.html" class="flex items-center gap-2">
+        <span class="text-xl font-black text-indigo-600">Chalkly</span>
+        <span class="text-xs bg-indigo-50 text-indigo-700 font-bold px-2 py-0.5 rounded-full border border-indigo-200">Teacher Portal</span>
+      </a>
+      <a href="tutors.html" class="text-xs text-slate-600 hover:text-slate-900 font-semibold">
+        View Directory →
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-xl mx-auto px-4 py-8 w-full">
+    <!-- Logged Out View -->
+    <div id="loggedOutView" class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-center">
+      <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl">
+        🎓
+      </div>
+      <h1 class="text-2xl font-black text-slate-900 mb-2">Claim Your Free Teacher Card</h1>
+      <p class="text-sm text-slate-600 mb-6">Create a verified public profile link with your subjects and direct WhatsApp button. Replace messy Facebook group posts in 60 seconds.</p>
+      
+      <button onclick="handleLogin()" class="w-full bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-3 shadow-sm transition">
+        <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+        Continue with Google
+      </button>
+    </div>
+
+    <!-- Logged In Form -->
+    <div id="loggedInView" class="hidden bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+        <div class="flex items-center gap-3">
+          <img id="userAvatar" class="w-10 h-10 rounded-full border border-slate-200" src="" alt="User">
+          <div>
+            <span class="block text-sm font-bold text-slate-900" id="userDisplayName"></span>
+            <span class="text-xs text-emerald-600 font-semibold">● Signed In</span>
+          </div>
+        </div>
+        <button onclick="handleLogout()" class="text-xs text-slate-500 hover:text-slate-800 font-medium">Log out</button>
+      </div>
+
+      <!-- Shareable Link Box -->
+      <div id="liveUrlBox" class="hidden mb-6 bg-indigo-50 border border-indigo-200 rounded-xl p-4">
+        <label class="block text-xs font-bold text-indigo-900 mb-1">🎉 Your Public Profile Link:</label>
+        <div class="flex gap-2">
+          <input type="text" id="liveUrlDisplay" readonly class="text-xs bg-white border border-indigo-300 rounded-lg px-2 py-1.5 flex-1 select-all font-mono">
+          <button onclick="copyProfileLink()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Copy</button>
+        </div>
+      </div>
+
+      <form onsubmit="handleSaveProfile(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Headline / Tagline *</label>
+          <input type="text" id="headline" placeholder="e.g. Senior CBSE & ICSE Math Faculty" required
+            class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Subjects Taught (comma-separated) *</label>
+          <input type="text" id="subjects" placeholder="e.g. Mathematics, Physics, Chemistry" required
+            class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Teaching Modes *</label>
+          <div class="flex gap-4 text-sm mt-1">
+            <label class="flex items-center gap-1.5">
+              <input type="checkbox" id="modeOnline" class="rounded text-indigo-600 focus:ring-indigo-500"> Online
+            </label>
+            <label class="flex items-center gap-1.5">
+              <input type="checkbox" id="modeInPerson" class="rounded text-indigo-600 focus:ring-indigo-500"> In-Person
+            </label>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">City / Area</label>
+            <input type="text" id="city" placeholder="e.g. Bangalore, South Delhi" 
+              class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Experience (Years)</label>
+            <input type="number" id="experience" placeholder="e.g. 5" min="0" max="60"
+              class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">WhatsApp Number *</label>
+            <input type="tel" id="whatsapp" placeholder="e.g. +919876543210" required
+              class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Fee Rate / Terms</label>
+            <input type="text" id="rate" placeholder="e.g. ₹800/hr or Negotiable"
+              class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">About Your Methodology & Track Record</label>
+          <textarea id="bio" rows="4" placeholder="Briefly describe your approach, demo class availability, and student results..."
+            class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
+        </div>
+
+        <button type="submit" id="btnSave" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl shadow-sm transition">
+          Publish / Update Profile
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-4 text-xs text-slate-500 text-center px-4">
+    © Chalkly. Directory is text-only. No copyrighted materials permitted.
+  </footer>
+
+  <script>
+    async function handleLogin() {
+      try {
+        await window.signInWithPopup(window.fbAuth, window.fbProvider);
+      } catch (err) {
+        alert("Sign in failed: " + err.message);
+      }
+    }
+
+    async function handleLogout() {
+      await window.signOut(window.fbAuth);
+    }
+
+    async function handleSaveProfile(e) {
+      e.preventDefault();
+      const user = window.fbAuth.currentUser;
+      if (!user) return alert("Please sign in first.");
+
+      const btn = document.getElementById('btnSave');
+      btn.innerText = "Saving...";
+      btn.disabled = true;
+
+      const modes = [];
+      if (document.getElementById('modeOnline').checked) modes.push('online');
+      if (document.getElementById('modeInPerson').checked) modes.push('in-person');
+
+      const subjects = document.getElementById('subjects').value
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean);
+
+      const profileData = {
+        firebase_uid: user.uid,
+        email: user.email,
+        display_name: user.displayName || 'Tutor',
+        avatar_url: user.photoURL,
+        headline: document.getElementById('headline').value.trim(),
+        bio: document.getElementById('bio').value.trim(),
+        subjects: subjects,
+        modes: modes,
+        city: document.getElementById('city').value.trim(),
+        experience_years: parseInt(document.getElementById('experience').value) || 0,
+        rate_text: document.getElementById('rate').value.trim(),
+        whatsapp_number: document.getElementById('whatsapp').value.trim(),
+        is_published: true,
+        updated_at: new Date().toISOString()
+      };
+
+      const { error } = await window.supabaseClient
+        .from('tutor_profiles')
+        .upsert(profileData);
+
+      btn.innerText = "Publish / Update Profile";
+      btn.disabled = false;
+
+      if (error) {
+        alert("Failed to save: " + error.message);
+      } else {
+        alert("Profile published successfully!");
+        const profileUrl = `${window.location.origin}/tutor.html?id=${user.uid}`;
+        document.getElementById('liveUrlDisplay').value = profileUrl;
+        document.getElementById('liveUrlBox').classList.remove('hidden');
+      }
+    }
+
+    function copyProfileLink() {
+      const copyText = document.getElementById('liveUrlDisplay');
+      copyText.select();
+      navigator.clipboard.writeText(copyText.value);
+      alert("Profile link copied to clipboard!");
+    }
+  </script>
+</body>
+</html>
