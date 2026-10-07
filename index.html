@@ -1,708 +1,857 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chalkly - Tutor's Assistant | Smart Teaching Management App</title>
-    <meta name="description" content="Chalkly is the ultimate companion app for tutors and educators. Manage students, track attendance, monitor test results, and share progress with parents through simple access codes.">
-    <meta name="keywords" content="tutor app, teaching assistant, student management, attendance tracking, education app, Chalkly, Factictionary, tutor software India">
-    <meta name="author" content="Factictionary">
-    <meta property="og:title" content="Chalkly - Tutor's Assistant">
-    <meta property="og:description" content="The ultimate companion app for tutors. Manage students, attendance, tests, and parent communication in one place.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://chalkly.factictionary.in">
-    <link rel="canonical" href="https://chalkly.factictionary.in">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chalkly — Tutor, Tests & Fees | All-in-one Assistant for Tutors</title>
+<meta name="description" content="Chalkly is the chalkboard-inspired assistant for private tutors, coaching institutes, and tuition teachers. AI test papers, homework, fees, and 700+ formula cards." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --paper: #fbfaf6;
+    --ink: #14171e;
+    --ink-soft: #3a4256;
+    --muted: #7c7a72;
+    --line: #e9e3d6;
+    --line-soft: #efe9d9;
+    --chalkboard: #1f3a2e;
+    --chalk: #f4f1e8;
+    --accent: #2f6f5e;
+    --accent-soft: #4a6d4f;
+    --warm: #c97b3f;
+    --rose: #b06367;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: 'DM Serif Display', serif; font-weight: 400; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  @media (min-width: 768px) { .container { padding: 0 32px; } }
+
+  /* Top nav */
+  .topbar {
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) { .topbar-inner { padding: 14px 32px; } }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .brand-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .brand-mark {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+  }
+  .nav-links {
+    display: none;
+    gap: 28px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .nav-links a { color: inherit; text-decoration: none; }
+  .nav-links a:hover { color: var(--ink); }
+  @media (min-width: 768px) { .nav-links { display: flex; } }
+  .install-btn {
+    background: var(--chalkboard);
+    color: var(--chalk);
+    border: none;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .install-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(31, 58, 46, 0.25);
+  }
+
+  /* Hero */
+  .hero {
+    padding: 72px 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(47, 111, 94, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(201, 123, 63, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .hero-grid { grid-template-columns: 1.1fr 0.9fr; gap: 64px; }
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(47, 111, 94, 0.08);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .hero-eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  h1.hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 6vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    max-width: 520px;
+    margin: 0 0 32px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 28px;
+    margin-bottom: 28px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .hero-meta .item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-meta .item strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .play-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--ink);
+    color: var(--chalk);
+    padding: 10px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .play-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  }
+  .play-badge .arrow { font-size: 18px; line-height: 1; }
+  .play-badge .text { line-height: 1.2; }
+  .play-badge .small { font-size: 10px; opacity: 0.7; }
+  .play-badge .big { font-size: 15px; font-weight: 600; }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-phone {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 24px;
+    box-shadow: 0 24px 60px -20px rgba(31, 58, 46, 0.35), 0 8px 20px -8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  .hero-phone:hover { transform: translateY(-4px) rotate(-0.5deg); }
+
+  /* Section base */
+  section { padding: 80px 0; position: relative; }
+  @media (min-width: 768px) { section { padding: 100px 0; } }
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: clamp(30px, 4.5vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+  }
+  .section-sub {
+    color: var(--ink-soft);
+    font-size: 17px;
+    max-width: 620px;
+    line-height: 1.6;
+    margin: 0 0 48px;
+  }
+
+  /* Features - alternating layout */
+  .feature {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 56px 0;
+    border-top: 1px solid var(--line);
+  }
+  @media (min-width: 900px) {
+    .feature { grid-template-columns: 1fr 1fr; gap: 64px; padding: 80px 0; }
+    .feature.reverse > div:first-child { order: 2; }
+  }
+  .feature-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .feature-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.15;
+    margin: 0 0 16px;
+    font-weight: 400;
+  }
+  .feature-desc {
+    color: var(--ink-soft);
+    font-size: 16px;
+    margin: 0 0 22px;
+    line-height: 1.65;
+  }
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  .check {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(47, 111, 94, 0.12);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .check svg { width: 10px; height: 10px; }
+  .feature-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .feature-img {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 18px;
+    box-shadow: 0 16px 40px -16px rgba(31, 58, 46, 0.25), 0 4px 12px -4px rgba(0,0,0,0.06);
+  }
+
+  /* Languages strip */
+  .lang-strip {
+    background: var(--chalkboard);
+    color: var(--chalk);
+    padding: 48px 0;
+    margin-top: 40px;
+    border-radius: 16px;
+    padding: 40px 32px;
+  }
+  .lang-strip h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin: 0 0 6px;
+    font-weight: 400;
+  }
+  .lang-strip p {
+    margin: 0 0 22px;
+    color: rgba(244, 241, 232, 0.7);
+    font-size: 14px;
+  }
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 24px;
+  }
+  @media (min-width: 600px) { .lang-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 900px) { .lang-grid { grid-template-columns: repeat(4, 1fr); } }
+  .lang-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--chalk);
+  }
+  .lang-item .flag {
+    width: 22px;
+    height: 16px;
+    border-radius: 2px;
+    background: rgba(244, 241, 232, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  /* What's new */
+  .whats-new {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin-top: 32px;
+  }
+  .whats-new h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    margin: 0 0 20px;
+    font-weight: 400;
+  }
+  .whats-new .version {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--chalk);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+  }
+  .whats-new ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  @media (min-width: 700px) { .whats-new ul { grid-template-columns: 1fr 1fr; } }
+  .whats-new li {
+    display: flex;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  .whats-new .ico {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(47, 111, 94, 0.1);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Gallery */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (min-width: 700px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1000px) { .gallery { grid-template-columns: repeat(4, 1fr); } }
+  .gallery-item {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px -4px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: var(--paper);
+    border: 1px solid var(--line);
+  }
+  .gallery-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -8px rgba(31, 58, 46, 0.18);
+  }
+  .gallery-item img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  /* Developer card */
+  .dev-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (min-width: 800px) { .dev-grid { grid-template-columns: 1.4fr 1fr; gap: 48px; } }
+  .dev-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 28px;
+  }
+  .dev-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin: 0 0 6px;
+    font-weight: 400;
+  }
+  .dev-card .role {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 0 0 20px;
+  }
+  .dev-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .dev-info li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 14px;
+  }
+  .dev-info li:last-child { border-bottom: none; }
+  .dev-info .k { color: var(--muted); }
+  .dev-info .v { color: var(--ink); text-align: right; }
+  .dev-info a { color: var(--accent); text-decoration: none; }
+  .dev-info a:hover { text-decoration: underline; }
+
+  .install-card {
+    background: var(--chalkboard);
+    color: var(--chalk);
+    border-radius: 16px;
+    padding: 32px 28px;
+    text-align: center;
+  }
+  .install-card .ic-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 20px;
+    margin: 0 auto 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+  .install-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    margin: 0 0 8px;
+    font-weight: 400;
+  }
+  .install-card p {
+    margin: 0 0 22px;
+    font-size: 14px;
+    color: rgba(244, 241, 232, 0.7);
+  }
+  .install-card .big-btn {
+    display: inline-block;
+    background: var(--chalk);
+    color: var(--chalkboard);
+    padding: 13px 28px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 15px;
+    transition: transform 0.15s ease;
+  }
+  .install-card .big-btn:hover { transform: translateY(-1px); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 36px 0 48px;
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .foot-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .foot-grid a { color: var(--ink-soft); text-decoration: none; margin-right: 18px; }
+  .foot-grid a:hover { color: var(--ink); }
+
+  /* Decorative chalk specks */
+  .chalk-dust {
+    position: absolute;
+    pointer-events: none;
+    color: var(--accent);
+    opacity: 0.18;
+    font-family: 'JetBrains Mono', monospace;
+  }
+</style>
 </head>
 <body>
 
-<!-- ============== NAVIGATION ============== -->
-<nav class="navbar" id="navbar">
-    <div class="container nav-container">
-        <a href="#home" class="nav-brand">
-            <span class="brand-logo">
-                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="40" height="40" rx="10" fill="url(#brandGrad)"/>
-                    <path d="M11 27L20 11L29 27H11Z" fill="white" opacity="0.95"/>
-                    <circle cx="20" cy="22" r="2" fill="#FF6B6B"/>
-                    <defs>
-                        <linearGradient id="brandGrad" x1="0" y1="0" x2="40" y2="40">
-                            <stop offset="0%" stop-color="#6366F1"/>
-                            <stop offset="100%" stop-color="#8B5CF6"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
+<!-- Top bar -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img src="icon.png" alt="Chalkly" class="brand-icon" />
+      <span class="brand-mark">Chalkly</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#whats-new">What's new</a>
+      <a href="#gallery">Screenshots</a>
+      <a href="#developer">Developer</a>
+    </nav>
+    <a class="install-btn" href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener">Get on Play</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          <span>v2.2.0 · AI Test Paper Generator</span>
+        </div>
+        <h1 class="hero-title">The chalkboard reimagined for modern tutors.</h1>
+        <p class="hero-sub">Chalkly is the all-in-one assistant for private tutors, coaching institutes, and tuition teachers. Generate board-aligned test papers in 30 seconds, manage homework, fees, and 700+ formula cards — all on a single screen.</p>
+        <div class="hero-meta">
+          <div class="item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent)"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+            <span><strong>4.8</strong> on Google Play</span>
+          </div>
+          <div class="item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent)"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <span>Productivity · Education</span>
+          </div>
+          <div class="item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent)"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span><strong>Free</strong> with in-app plans</span>
+          </div>
+        </div>
+        <div class="hero-cta">
+          <a class="play-badge" href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.41.18-.78.46-1.03l9.92 9.92-9.92 9.92c-.28-.25-.46-.62-.46-1.03z" opacity="0.5"/><path d="M16.81 15.12L6.05 21.34l9.49-9.49 1.27 3.27zM21.16 10.81l-2.81-1.62-3.43 3.43 3.43 3.43 2.81-1.62c1.18-.68 1.18-2.34 0-3.02zM6.05 2.66l10.76 6.22-1.27 3.27-9.49-9.49z"/></svg>
+            <span class="text">
+              <span class="small">GET IT ON</span><br/>
+              <span class="big">Google Play</span>
             </span>
-            <span class="brand-text">Chalkly</span>
-        </a>
-        <div class="nav-links" id="navLinks">
-            <a href="#features">Features</a>
-            <a href="#how-it-works">How it Works</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#testimonials">Reviews</a>
-            <a href="#faq">FAQ</a>
-            <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="nav-mobile-cta">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
-                Get the App
-            </a>
+          </a>
+          <a class="install-btn" style="background: transparent; color: var(--chalkboard); border: 1px solid var(--line);" href="https://chalkly.factictionary.in" target="_blank" rel="noopener">Visit website →</a>
         </div>
-        <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="btn btn-primary nav-cta">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
-            Get the App
-        </a>
-        <button class="nav-toggle" id="navToggle" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
+      </div>
+      <div class="hero-visual">
+        <img src="screenshot_05.png" alt="Chalkly app screenshot" class="hero-phone" />
+      </div>
     </div>
-</nav>
-<div class="nav-overlay" id="navOverlay"></div>
-
-<!-- ============== HERO SECTION ============== -->
-<section class="hero" id="home">
-    <div class="hero-bg">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-        <div class="grid-overlay"></div>
-    </div>
-    <div class="container hero-container">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="pulse-dot"></span>
-                <span>Built for Indian Tutors & Educators</span>
-            </div>
-            <h1 class="hero-title">
-                Run your tutoring<br>
-                practice <span class="text-gradient">effortlessly</span>
-            </h1>
-            <p class="hero-subtitle">
-                Chalkly is the all-in-one companion app that helps tutors manage students,
-                track attendance, record test results, and share progress with parents —
-                all through simple 6-digit access codes.
-            </p>
-            <div class="hero-actions">
-                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
-                    Download on Google Play
-                </a>
-                <a href="#how-it-works" class="btn btn-secondary btn-lg">
-                    See how it works
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-            </div>
-            <div class="hero-trust">
-                <div class="trust-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    <span>Secure Google Sign-In</span>
-                </div>
-                <div class="trust-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    <span>Save hours every week</span>
-                </div>
-                <div class="trust-item">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    <span>Parents stay informed</span>
-                </div>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="phone-mockup">
-                <div class="phone-frame">
-                    <div class="phone-notch"></div>
-                    <div class="phone-screen">
-                        <div class="app-header-bar">
-                            <div class="app-bar-title">My Students</div>
-                            <div class="app-bar-icon">+</div>
-                        </div>
-                        <div class="app-stats-row">
-                            <div class="mini-stat">
-                                <div class="mini-stat-num">28</div>
-                                <div class="mini-stat-label">Students</div>
-                            </div>
-                            <div class="mini-stat">
-                                <div class="mini-stat-num">94%</div>
-                                <div class="mini-stat-label">Attendance</div>
-                            </div>
-                            <div class="mini-stat">
-                                <div class="mini-stat-num">12</div>
-                                <div class="mini-stat-label">Tests</div>
-                            </div>
-                        </div>
-                        <div class="app-card">
-                            <div class="card-avatar avatar-1">AS</div>
-                            <div class="card-info">
-                                <div class="card-name">Aarav Sharma</div>
-                                <div class="card-meta">Grade 8 · Mathematics</div>
-                            </div>
-                            <div class="card-code">482913</div>
-                        </div>
-                        <div class="app-card">
-                            <div class="card-avatar avatar-2">PK</div>
-                            <div class="card-info">
-                                <div class="card-name">Priya Kumar</div>
-                                <div class="card-meta">Grade 10 · Science</div>
-                            </div>
-                            <div class="card-code">739205</div>
-                        </div>
-                        <div class="app-card">
-                            <div class="card-avatar avatar-3">RV</div>
-                            <div class="card-info">
-                                <div class="card-name">Rohan Verma</div>
-                                <div class="card-meta">Grade 9 · English</div>
-                            </div>
-                            <div class="card-code">156842</div>
-                        </div>
-                        <div class="app-card highlight">
-                            <div class="card-avatar avatar-4">MA</div>
-                            <div class="card-info">
-                                <div class="card-name">Meera Anand</div>
-                                <div class="card-meta">Grade 7 · Mathematics</div>
-                            </div>
-                            <div class="card-code">920174</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="floating-card fc-1">
-                    <div class="fc-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    </div>
-                    <div>
-                        <div class="fc-title">Attendance Marked</div>
-                        <div class="fc-sub">5 students · Today</div>
-                    </div>
-                </div>
-                <div class="floating-card fc-2">
-                    <div class="fc-icon" style="background: linear-gradient(135deg, #F59E0B, #EF4444);">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                    </div>
-                    <div>
-                        <div class="fc-title">Progress Up 12%</div>
-                        <div class="fc-sub">This month</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
-<!-- ============== STATS BAR ============== -->
-<section class="stats-bar">
-    <div class="container stats-container">
-        <div class="stat-item">
-            <div class="stat-num">6-digit</div>
-            <div class="stat-label">Parent Access Codes</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-            <div class="stat-num">100%</div>
-            <div class="stat-label">Data Encrypted</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-            <div class="stat-num">48hr</div>
-            <div class="stat-label">Support Response</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-            <div class="stat-num">Free</div>
-            <div class="stat-label">Plan Available</div>
-        </div>
+<!-- Features -->
+<section id="features">
+  <div class="container">
+    <div class="section-eyebrow">// what's inside</div>
+    <h2 class="section-title">Five workflows. One chalkboard.</h2>
+    <p class="section-sub">Chalkly condenses the entire tuition workflow — from syllabus-aligned test papers to digital fee receipts — into one fast, offline-capable app with a familiar blackboard aesthetic.</p>
+
+    <!-- Feature 1 -->
+    <div class="feature">
+      <div>
+        <span class="feature-num">01 — Generate</span>
+        <h3 class="feature-title">AI Test Paper & Quiz Generator</h3>
+        <p class="feature-desc">Board-aligned question papers in under 30 seconds, with zero typing. Pick a curriculum, choose your chapters, and Chalkly assembles the rest.</p>
+        <ul class="feature-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Multi-curriculum: CBSE · ICSE · SPM (KSSM) · PT3 · IGCSE · State Boards · IB</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Difficulty and question count: Easy / Medium / Hard, 5–50 questions</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Step-by-step answer keys auto-generated with every paper</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>1-tap PDF export and WhatsApp share to student batches</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <img src="screenshot_03.png" alt="AI Test Paper Generator" class="feature-img" />
+      </div>
     </div>
+
+    <!-- Feature 2 -->
+    <div class="feature reverse">
+      <div>
+        <span class="feature-num">02 — Track</span>
+        <h3 class="feature-title">Homework & Assignment Tracker</h3>
+        <p class="feature-desc">Keep students accountable and parents updated with zero paper registers. Every assignment lands in the right inbox and updates in real time.</p>
+        <ul class="feature-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>1-tap assignment to a single student or an entire batch</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Live status: Pending · Due Today · Tomorrow · Overdue</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Interactive student portal for self-checked completion</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Parent transparency feed and WhatsApp reminders</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <img src="screenshot_08.png" alt="Homework Tracker" class="feature-img" />
+      </div>
+    </div>
+
+    <!-- Feature 3 -->
+    <div class="feature">
+      <div>
+        <span class="feature-num">03 — Manage</span>
+        <h3 class="feature-title">Smart Tutor & Tuition Management</h3>
+        <p class="feature-desc">Everything you need to run a coaching class smoothly — from the first roll call to the last fee receipt of the month.</p>
+        <ul class="feature-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Batch and timetable scheduling by class, subject, and slot</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>1-tap daily attendance with monthly reports</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Fee register: paid, pending, overdue — at a glance</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Branded digital receipts over WhatsApp, Telegram, or SMS</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <img src="screenshot_06.png" alt="Tuition Management" class="feature-img" />
+      </div>
+    </div>
+
+    <!-- Feature 4 -->
+    <div class="feature reverse">
+      <div>
+        <span class="feature-num">04 — Revise</span>
+        <h3 class="feature-title">700+ Formula & Concept Vault</h3>
+        <p class="feature-desc">Master Mathematics, Physics, and Chemistry with authentic chalkboard study cards. KaTeX-typed, fully offline, and organised by class.</p>
+        <ul class="feature-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Complete syllabi from Class 6 through Class 12</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>KaTeX typography for ultra-crisp mathematical symbols</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>5 study modes: Flashcards · Active Recall · Quick Review · Spaced Repetition · Shuffle</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>100% offline access — revise anywhere, no internet needed</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <img src="screenshot_04.png" alt="Formula Vault" class="feature-img" />
+      </div>
+    </div>
+
+    <!-- Feature 5 -->
+    <div class="feature">
+      <div>
+        <span class="feature-num">05 — Connect</span>
+        <h3 class="feature-title">Multilingual & Vernacular</h3>
+        <p class="feature-desc">Built for local and global adoption with 12 languages, including Bahasa Melayu, Bahasa Indonesia, Português, Deutsch, हिन्दी, मराठी, বাংলা, தமிழ், Français, Español, and العربية.</p>
+        <ul class="feature-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Entire interface localised, not just menus</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Generated test papers and receipts follow selected language</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Vernacular-first for South-East Asia and South Asia</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <img src="screenshot_01.png" alt="Language Selection" class="feature-img" />
+      </div>
+    </div>
+
+    <!-- Language strip -->
+    <div class="lang-strip">
+      <h3>Twelve languages, one classroom.</h3>
+      <p>Chalkly's interface, test papers, and receipts follow whichever language you teach in.</p>
+      <div class="lang-grid">
+        <div class="lang-item"><span class="flag">EN</span> English</div>
+        <div class="lang-item"><span class="flag">MS</span> Bahasa Melayu</div>
+        <div class="lang-item"><span class="flag">ID</span> Bahasa Indonesia</div>
+        <div class="lang-item"><span class="flag">PT</span> Português</div>
+        <div class="lang-item"><span class="flag">DE</span> Deutsch</div>
+        <div class="lang-item"><span class="flag">हि</span> हिन्दी</div>
+        <div class="lang-item"><span class="flag">म</span> मराठी</div>
+        <div class="lang-item"><span class="flag">ব</span> বাংলা</div>
+        <div class="lang-item"><span class="flag">த</span> தமிழ்</div>
+        <div class="lang-item"><span class="flag">FR</span> Français</div>
+        <div class="lang-item"><span class="flag">ES</span> Español</div>
+        <div class="lang-item"><span class="flag">ع</span> العربية</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ============== FEATURES ============== -->
-<section class="features" id="features">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Features</span>
-            <h2 class="section-title">Everything you need to <span class="text-gradient">teach smarter</span></h2>
-            <p class="section-subtitle">From attendance to analytics — all the tools a modern tutor needs, designed mobile-first and ready in seconds.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon icon-1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                </div>
-                <h3>Student Management</h3>
-                <p>Add and manage unlimited students (premium). Store name, grade, subject, and board — all in one place.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon icon-2">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg>
-                </div>
-                <h3>Attendance Tracking</h3>
-                <p>Mark Present, Absent, Late, or Cancelled in seconds. Bulk update for entire batches and generate reports.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon icon-3">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                </div>
-                <h3>Test Results & Analytics</h3>
-                <p>Record marks, track percentages, and visualize performance across subjects and months at a glance.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon icon-4">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </div>
-                <h3>Feedback & Communication</h3>
-                <p>Write rich feedback for each student and publish it for parents to view — no more repeated calls.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon icon-5">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                </div>
-                <h3>Smart Scheduling</h3>
-                <p>Create recurring weekly schedules. Smart conflict detection prevents double-booking of any slot.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon icon-6">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <h3>Secure & Private</h3>
-                <p>Google Sign-In authentication, encrypted data in transit and at rest, and unique code-based student access.</p>
-            </div>
-        </div>
+<!-- What's new -->
+<section id="whats-new">
+  <div class="container">
+    <div class="section-eyebrow">// latest release</div>
+    <h2 class="section-title">Major overhaul in v2.2.0.</h2>
+    <p class="section-sub">The biggest update to Chalkly yet — an AI test paper generator that finishes in 30 seconds, a real homework module, expanded language support, and a 700-card formula vault.</p>
+    <div class="whats-new">
+      <span class="version">v2.2.0</span>
+      <ul>
+        <li>
+          <span class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </span>
+          <div>
+            <strong>AI Test Paper & Quiz Generator</strong> — board-aligned tests in 30s for CBSE, ICSE, SPM (Malaysia KSSM), PT3, and IGCSE (Classes 6–12). Instant answer keys, PDF export, WhatsApp share.
+          </div>
+        </li>
+        <li>
+          <span class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </span>
+          <div>
+            <strong>Homework Module</strong> — assign tasks to individual students or entire batches with live due dates and WhatsApp tracking.
+          </div>
+        </li>
+        <li>
+          <span class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </span>
+          <div>
+            <strong>12-Language Support</strong> — English, Bahasa Melayu, Bahasa Indonesia, Português, Deutsch, हिन्दी, मराठी, বাংলা, தமிழ், Français, Español, and العربية.
+          </div>
+        </li>
+        <li>
+          <span class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+          </span>
+          <div>
+            <strong>700+ Formula Vault</strong> — expanded coverage of Class 6 to 12 Mathematics, Physics, and Chemistry with KaTeX-rendered study cards.
+          </div>
+        </li>
+      </ul>
     </div>
+  </div>
 </section>
 
-<!-- ============== HOW IT WORKS ============== -->
-<section class="how-it-works" id="how-it-works">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">How it works</span>
-            <h2 class="section-title">Three simple steps to <span class="text-gradient">digitize your class</span></h2>
-            <p class="section-subtitle">No complex setup, no training needed. Get started in under 2 minutes.</p>
-        </div>
-        <div class="steps-grid">
-            <div class="step-card">
-                <div class="step-number">01</div>
-                <div class="step-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </div>
-                <h3>Sign in & Add Students</h3>
-                <p>Login securely with your Google account. Add students with their name, grade, subject, and board.</p>
-            </div>
-            <div class="step-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </div>
-            <div class="step-card">
-                <div class="step-number">02</div>
-                <div class="step-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                </div>
-                <h3>Track Daily</h3>
-                <p>Mark attendance, record test marks, and write feedback — all in just a few taps during or after class.</p>
-            </div>
-            <div class="step-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </div>
-            <div class="step-card">
-                <div class="step-number">03</div>
-                <div class="step-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-                </div>
-                <h3>Share with Parents</h3>
-                <p>Share a unique 6-digit code with parents. They can view progress instantly — no account required.</p>
-            </div>
-        </div>
-
-        <!-- Highlighted feature: 6-digit access -->
-        <div class="highlight-feature">
-            <div class="highlight-content">
-                <div class="highlight-tag">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    Unique to Chalkly
-                </div>
-                <h3>6-digit parent access codes — zero friction</h3>
-                <p>Each student gets a unique 6-digit code. Parents simply open Chalkly, enter the code, and instantly see attendance, test scores, and your feedback. No app install. No email. No password. Just instant transparency that parents love.</p>
-                <ul class="highlight-list">
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        No account creation for parents or students
-                    </li>
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        View-only access — privacy preserved
-                    </li>
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Reduces "how is my child doing?" calls by 90%
-                    </li>
-                </ul>
-            </div>
-            <div class="highlight-visual">
-                <div class="code-display">
-                    <div class="code-label">Student Access Code</div>
-                    <div class="code-digits">
-                        <span>4</span><span>8</span><span>2</span><span>9</span><span>1</span><span>3</span>
-                    </div>
-                    <div class="code-result">
-                        <div class="result-row">
-                            <div class="result-label">Attendance</div>
-                            <div class="result-value success">96%</div>
-                        </div>
-                        <div class="result-row">
-                            <div class="result-label">Last Test</div>
-                            <div class="result-value">88/100</div>
-                        </div>
-                        <div class="result-row">
-                            <div class="result-label">Tutor Feedback</div>
-                            <div class="result-value feedback">"Excellent progress this month!"</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Gallery -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-eyebrow">// in-app screenshots</div>
+    <h2 class="section-title">A closer look at the chalkboard.</h2>
+    <p class="section-sub">Screenshots captured directly from the live Google Play listing for <code class="mono" style="font-size: 14px; background: var(--line-soft); padding: 2px 6px; border-radius: 4px;">in.factictionary.chalkly</code>.</p>
+    <div class="gallery">
+      <div class="gallery-item"><img src="screenshot_01.png" alt="Chalkly language selection" /></div>
+      <div class="gallery-item"><img src="screenshot_02.png" alt="AI parent progress update" /></div>
+      <div class="gallery-item"><img src="screenshot_03.png" alt="AI Test Paper Builder" /></div>
+      <div class="gallery-item"><img src="screenshot_04.png" alt="Formula &amp; Concept Vault" /></div>
+      <div class="gallery-item"><img src="screenshot_05.png" alt="Real Numbers concept card" /></div>
+      <div class="gallery-item"><img src="screenshot_06.png" alt="WhatsApp fee reminder" /></div>
+      <div class="gallery-item"><img src="screenshot_07.png" alt="Attendance with 1-tap class actions" /></div>
+      <div class="gallery-item"><img src="screenshot_08.png" alt="Homework module" /></div>
     </div>
+  </div>
 </section>
 
-<!-- ============== USE CASES ============== -->
-<section class="use-cases">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Perfect for</span>
-            <h2 class="section-title">Built for <span class="text-gradient">every kind of educator</span></h2>
-        </div>
-        <div class="usecase-grid">
-            <div class="usecase-card">
-                <div class="usecase-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </div>
-                <h4>Private Tutors</h4>
-                <p>Managing multiple students across different subjects and grades.</p>
-            </div>
-            <div class="usecase-card">
-                <div class="usecase-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                </div>
-                <h4>Tuition Centers</h4>
-                <p>Tracking batch attendance and group performance metrics.</p>
-            </div>
-            <div class="usecase-card">
-                <div class="usecase-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
-                </div>
-                <h4>Coaching Institutes</h4>
-                <p>Monitoring student progress across competitive exam batches.</p>
-            </div>
-            <div class="usecase-card">
-                <div class="usecase-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                </div>
-                <h4>Homeschooling Parents</h4>
-                <p>Documenting learning journeys for multiple children at home.</p>
-            </div>
-            <div class="usecase-card">
-                <div class="usecase-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                </div>
-                <h4>School Teachers</h4>
-                <p>Tracking supplementary tuition classes outside school hours.</p>
-            </div>
-        </div>
+<!-- Developer -->
+<section id="developer">
+  <div class="container">
+    <div class="section-eyebrow">// who built it</div>
+    <h2 class="section-title">Built by Factictionary.</h2>
+    <p class="section-sub">A small indie studio focused on privacy-respecting, on-device productivity tools for educators, students, and creators.</p>
+    <div class="dev-grid">
+      <div class="dev-card">
+        <h3>Factictionary</h3>
+        <p class="role">Independent app studio</p>
+        <ul class="dev-info">
+          <li><span class="k">App</span><span class="v">Chalkly: Tutor, Tests &amp; Fees</span></li>
+          <li><span class="k">Package</span><span class="v mono" style="font-size: 12px;">in.factictionary.chalkly</span></li>
+          <li><span class="k">Category</span><span class="v">Productivity · Education</span></li>
+          <li><span class="k">Contact</span><span class="v"><a href="mailto:factictionary@gmail.com">factictionary@gmail.com</a></span></li>
+          <li><span class="k">Website</span><span class="v"><a href="https://chalkly.factictionary.in" target="_blank" rel="noopener">chalkly.factictionary.in</a></span></li>
+          <li><span class="k">Privacy</span><span class="v"><a href="https://chalkly.factictionary.in/privacy-policy" target="_blank" rel="noopener">Privacy policy</a></span></li>
+        </ul>
+      </div>
+      <div class="install-card">
+        <img src="icon.png" alt="Chalkly icon" class="ic-icon" />
+        <h3>Chalkly</h3>
+        <p>Free on Google Play. Test papers, homework, fees, and 700+ formulas in one chalkboard.</p>
+        <a class="big-btn" href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener">Install for Android</a>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ============== PRICING ============== -->
-<section class="pricing" id="pricing">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Pricing</span>
-            <h2 class="section-title">Start free. <span class="text-gradient">Upgrade when ready.</span></h2>
-            <p class="section-subtitle">No hidden fees. No credit card required. Cancel anytime.</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3>Free</h3>
-                    <p>Perfect to get started</p>
-                </div>
-                <div class="pricing-amount">
-                    <span class="price">₹0</span>
-                    <span class="period">/ forever</span>
-                </div>
-                <ul class="pricing-features">
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Up to 5 students
-                    </li>
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Basic attendance tracking
-                    </li>
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Test result recording
-                    </li>
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Feedback management
-                    </li>
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        6-digit parent access codes
-                    </li>
-                </ul>
-                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="btn btn-secondary btn-full">
-                    Get Started Free
-                </a>
-            </div>
-            <div class="pricing-card featured">
-                <div class="pricing-badge">Most Popular</div>
-                <div class="pricing-header">
-                    <h3>Premium</h3>
-                    <p>For serious tutors</p>
-                </div>
-                <div class="pricing-amount">
-                    <span class="price">Unlock</span>
-                    <span class="period">in app</span>
-                </div>
-                <ul class="pricing-features">
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        <strong>Unlimited students</strong>
-                    </li>
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Advanced analytics dashboard
-                    </li>
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Export reports as PDF
-                    </li>
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Bulk attendance & operations
-                    </li>
-                    <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Priority email support
-                    </li>
-                </ul>
-                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="btn btn-primary btn-full">
-                    Upgrade in App
-                </a>
-            </div>
-        </div>
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>© 2026 Factictionary.</div>
+      <div>
+        <a href="https://chalkly.factictionary.in" target="_blank" rel="noopener">Website</a>
+        <a href="https://chalkly.factictionary.in/privacy-policy" target="_blank" rel="noopener">Privacy</a>
+        <a href="mailto:factictionary@gmail.com">Contact</a>
+        <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener">Google Play</a>
+      </div>
     </div>
-</section>
-
-<!-- ============== TESTIMONIALS ============== -->
-<section class="testimonials" id="testimonials">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Loved by tutors</span>
-            <h2 class="section-title">Hear from <span class="text-gradient">real educators</span></h2>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="stars">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <p class="testimonial-text">"I used to maintain separate notebooks for each student. Chalkly digitized everything — attendance, fees, progress — all in one place. My evenings are free again."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar" style="background: linear-gradient(135deg, #EC4899, #F59E0B);">PS</div>
-                    <div>
-                        <div class="author-name">Priya S.</div>
-                        <div class="author-role">Mathematics Tutor · Bengaluru</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <p class="testimonial-text">"The access code feature is brilliant. Parents can check their child's progress anytime without calling me. It's cut my phone calls in half and parents are happier."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar" style="background: linear-gradient(135deg, #6366F1, #06B6D4);">RK</div>
-                    <div>
-                        <div class="author-name">Rajesh K.</div>
-                        <div class="author-role">Science Tutor · Delhi</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <p class="testimonial-text">"Running a coaching institute with 60+ students used to be chaos. With Chalkly's bulk attendance and reports, I save 5+ hours every week. Worth every rupee."</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar" style="background: linear-gradient(135deg, #10B981, #3B82F6);">AM</div>
-                    <div>
-                        <div class="author-name">Anita M.</div>
-                        <div class="author-role">Coaching Owner · Pune</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============== FAQ ============== -->
-<section class="faq" id="faq">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">FAQ</span>
-            <h2 class="section-title">Questions? <span class="text-gradient">We've got answers.</span></h2>
-        </div>
-        <div class="faq-list">
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Is Chalkly free to use?</span>
-                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Yes! Chalkly offers a generous free plan with up to 5 students, basic attendance tracking, test recording, and feedback features. You can upgrade to Premium in-app to unlock unlimited students and advanced features.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Do parents need to create an account?</span>
-                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>No. Parents and students access their information using a unique 6-digit code you generate for each student. No email, no password, no app download required — just instant access to attendance, test results, and your feedback.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Is my data secure?</span>
-                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Absolutely. Chalkly uses Google Sign-In for tutor authentication, and all data is encrypted in transit and at rest. We never share your data with third parties, and you can request deletion of your data at any time.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Can I export reports?</span>
-                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Yes — PDF report export is available on the Premium plan. Generate comprehensive student reports including attendance percentages, performance trends, and feedback summaries that you can share or print.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Does it work offline?</span>
-                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Chalkly is designed primarily for online use to ensure data syncs across your devices and parents see real-time updates. An active internet connection is recommended for the best experience.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>How do I get support?</span>
-                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Reach out to us at <a href="mailto:factictionary@gmail.com">factictionary@gmail.com</a> or call <a href="tel:+919739783540">+91 97397 83540</a>. We typically respond within 48 hours, and Premium users receive priority support.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============== FINAL CTA ============== -->
-<section class="cta-section">
-    <div class="container">
-        <div class="cta-card">
-            <div class="cta-bg-shapes">
-                <div class="cta-shape shape-1"></div>
-                <div class="cta-shape shape-2"></div>
-            </div>
-            <div class="cta-content">
-                <h2>Ready to transform your tutoring practice?</h2>
-                <p>Join thousands of Indian educators who use Chalkly to save time, delight parents, and grow their teaching business.</p>
-                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener" class="btn btn-white btn-lg">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5c0-.4.2-.7.5-.9l9.7 9.4-9.7 9.4c-.3-.2-.5-.5-.5-.9zm10.4-7.5L4.6 4.2l12.4 7.2-3.6 1.6zm0 0l3.6 1.6-12.4 7.2 8.8-8.8zM21 12c0 .5-.3.9-.7 1.1l-4 2.3-3.7-3.4 3.7-3.4 4 2.3c.4.2.7.6.7 1.1z"/></svg>
-                    Download Free on Google Play
-                </a>
-                <div class="cta-meta">
-                    Free to start · No credit card · Android 6.0+
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ============== FOOTER ============== -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <a href="#home" class="nav-brand">
-                    <span class="brand-logo">
-                        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="40" height="40" rx="10" fill="url(#brandGrad2)"/>
-                            <path d="M11 27L20 11L29 27H11Z" fill="white" opacity="0.95"/>
-                            <circle cx="20" cy="22" r="2" fill="#FF6B6B"/>
-                            <defs>
-                                <linearGradient id="brandGrad2" x1="0" y1="0" x2="40" y2="40">
-                                    <stop offset="0%" stop-color="#6366F1"/>
-                                    <stop offset="100%" stop-color="#8B5CF6"/>
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </span>
-                    <span class="brand-text">Chalkly</span>
-                </a>
-                <p class="footer-tagline">The ultimate companion app for tutors and educators. Built with love in India by Factictionary.</p>
-                <div class="footer-developer">
-                    <div class="dev-label">Developer</div>
-                    <div class="dev-name">Factictionary</div>
-                    <div class="dev-address">Bengaluru, Karnataka, India</div>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Product</h4>
-                <a href="#features">Features</a>
-                <a href="#how-it-works">How it Works</a>
-                <a href="#pricing">Pricing</a>
-                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener">Get on Google Play</a>
-            </div>
-            <div class="footer-col">
-                <h4>Support</h4>
-                <a href="mailto:factictionary@gmail.com">Email Support</a>
-                <a href="tel:+919739783540">Call Us</a>
-                <a href="https://chalkly.factictionary.in" target="_blank" rel="noopener">Official Website</a>
-                <a href="#faq">FAQ</a>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <a href="https://chalkly.factictionary.in/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
-                <a href="https://chalkly.factictionary.in/terms-service.html" target="_blank" rel="noopener">Terms of Service</a>
-                <a href="https://play.google.com/store/apps/dev?id=Factictionary" target="_blank" rel="noopener">All Apps by Factictionary</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div>© 2026 Factictionary. All rights reserved.</div>
-            <div class="footer-bottom-links">
-                <a href="https://play.google.com/store/apps/details?id=in.factictionary.chalkly" target="_blank" rel="noopener">Google Play</a>
-                <span>·</span>
-                <a href="mailto:factictionary@gmail.com">Contact</a>
-            </div>
-        </div>
-    </div>
+  </div>
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
